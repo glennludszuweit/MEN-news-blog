@@ -129,19 +129,24 @@ const deleteUser = (req, res) => {
   });
 };
 
-//Posts Routes
-app.get('/api/v1/posts', getAllPosts);
-app.post('/api/v1/posts', createPost);
-app.get('/api/v1/posts/:id', getPost);
-app.patch('/api/v1/posts/:id', updatePost);
-app.delete('/api/v1/posts/:id', deletePost);
+//Routes
+const postRouter = express.Router();
+const userRouter = express.Router();
 
-//Users Routes
-app.get('/api/v1/users', getAllUsers);
-app.post('/api/v1/users', createUser);
-app.get('/api/v1/users/:id', getUser);
-app.patch('/api/v1/users/:id', updateUser);
-app.delete('/api/v1/users/:id', deleteUser);
+postRouter.get('/', getAllPosts);
+postRouter.post('/', createPost);
+postRouter.get('/:id', getPost);
+postRouter.patch('/:id', updatePost);
+postRouter.delete('/:id', deletePost);
+
+userRouter.get('/', getAllUsers);
+userRouter.post('/', createUser);
+userRouter.get('/:id', getUser);
+userRouter.patch('/:id', updateUser);
+userRouter.delete('/:id', deleteUser);
+
+app.use('/api/v1/posts', postRouter);
+app.use('/api/v1/users', userRouter);
 
 //Server
 const port = process.env.PORT || 4000;
