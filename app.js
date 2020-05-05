@@ -25,8 +25,4 @@ app.use((req, res, next) => {
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/users', userRouter);
 
-//Server
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+module.exports = app;
