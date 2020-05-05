@@ -130,21 +130,6 @@ const deleteUser = (req, res) => {
 };
 
 //Routes
-const postRouter = express.Router();
-const userRouter = express.Router();
-
-postRouter.get('/', getAllPosts);
-postRouter.post('/', createPost);
-postRouter.get('/:id', getPost);
-postRouter.patch('/:id', updatePost);
-postRouter.delete('/:id', deletePost);
-
-userRouter.get('/', getAllUsers);
-userRouter.post('/', createUser);
-userRouter.get('/:id', getUser);
-userRouter.patch('/:id', updateUser);
-userRouter.delete('/:id', deleteUser);
-
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/users', userRouter);
 
