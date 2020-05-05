@@ -23,7 +23,10 @@ app.get('/api/v1/posts/:id', (req, res) => {
   console.log(req.params);
   const id = req.params.id * 1;
   if (id > posts.length) {
-    return res.status(404).json({ status: 'Failed', message: 'Invalid Id' });
+    return res.status(404).json({
+      status: 'Failed',
+      message: 'Invalid Id',
+    });
   }
   const post = posts.find((el) => el.id === id);
   res.status(200).json({
@@ -50,6 +53,21 @@ app.post('/api/v1/posts', (req, res) => {
       });
     }
   );
+});
+
+app.patch('/api/v1/posts/:id', (req, res) => {
+  if (req.params.id * 1 > posts.length) {
+    return res.status(404).json({
+      status: 'Failed',
+      message: 'Invalid Id',
+    });
+  }
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: '<Updated>',
+    },
+  });
 });
 
 //Server
