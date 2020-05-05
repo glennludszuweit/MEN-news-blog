@@ -1,6 +1,8 @@
 const fs = require('fs');
 const express = require('express');
 
+// const postsController = require('./controllers/postsController');
+
 const app = express();
 
 app.use(express.json());
@@ -9,7 +11,8 @@ const posts = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/posts-simple.json`)
 );
 
-app.get('/api/v1/posts', (req, res) => {
+//Controllers
+const getAllPosts = (req, res) => {
   res.status(200).json({
     status: 'success',
     results: posts.length,
@@ -17,9 +20,9 @@ app.get('/api/v1/posts', (req, res) => {
       posts,
     },
   });
-});
+};
 
-app.get('/api/v1/posts/:id', (req, res) => {
+const getPost = (req, res) => {
   console.log(req.params);
   const id = req.params.id * 1;
   if (id > posts.length) {
@@ -35,9 +38,9 @@ app.get('/api/v1/posts/:id', (req, res) => {
       post,
     },
   });
-});
+};
 
-app.post('/api/v1/posts', (req, res) => {
+const createPost = (req, res) => {
   const newId = posts[posts.length - 1].id + 1;
   const newPost = Object.assign({ id: newId }, req.body);
   posts.push(newPost);
@@ -53,9 +56,9 @@ app.post('/api/v1/posts', (req, res) => {
       });
     }
   );
-});
+};
 
-app.patch('/api/v1/posts/:id', (req, res) => {
+const updatePost = (req, res) => {
   if (req.params.id * 1 > posts.length) {
     return res.status(404).json({
       status: 'Failed',
@@ -68,7 +71,35 @@ app.patch('/api/v1/posts/:id', (req, res) => {
       tour: '<Updated>',
     },
   });
-});
+};
+
+const deletePost = (req, res) => {
+  if (req.params.id * 1 > posts.length) {
+    return res.status(404).json({
+      status: 'Failed',
+      message: 'Invalid Id',
+    });
+  }
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+};
+
+//Routes
+app.get('/api/v1/posts', getAllPosts);
+app.post('/api/v1/posts', createPost);
+
+app.get('/api/v1/posts/:id', getPost);
+app.patch('/api/v1/posts/:id', updatePost);
+app.delete('/api/v1/posts/:id', deletePost);
+
+// app.route('/api/v1/posts').get(getAllPosts).post(createPost);
+// app
+//   .route('/api/v1/posts/:id')
+//   .get(getPost)
+//   .patch(updatePost)
+//   .delete(deletePost);
 
 //Server
 const port = process.env.PORT || 4000;
