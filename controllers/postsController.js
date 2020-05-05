@@ -1,9 +1,14 @@
-'use strict';
+const fs = require('fs');
+
+const posts = JSON.parse(
+  fs.readFileSync(`${__dirname}/../dev-data/data/posts-simple.json`)
+);
 
 module.exports = {
   getAllPosts: (req, res) => {
     res.status(200).json({
       status: 'success',
+      requestedAt: req.requestTime,
       results: posts.length,
       data: {
         posts,
@@ -24,7 +29,7 @@ module.exports = {
     res.status(200).json({
       status: 'success',
       data: {
-        posts,
+        post,
       },
     });
   },
@@ -34,7 +39,7 @@ module.exports = {
     const newPost = Object.assign({ id: newId }, req.body);
     posts.push(newPost);
     fs.writeFile(
-      `${__dirname}/dev-data/data/posts-simple.json`,
+      `${__dirname}/../dev-data/data/posts-simple.json`,
       JSON.stringify(posts),
       (err) => {
         res.status(201).json({
