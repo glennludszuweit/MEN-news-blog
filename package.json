@@ -1,0 +1,26 @@
+{
+  "name": "news_blog",
+  "version": "1.0.0",
+  "description": "News Blog",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glennludszuweit/MEN-news-blog.git"
+  },
+  "author": "Glenn Ludszuweit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glennludszuweit/MEN-news-blog/issues"
+  },
+  "homepage": "https://github.com/glennludszuweit/MEN-news-blog#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
