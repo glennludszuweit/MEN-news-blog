@@ -8,6 +8,7 @@ const app = express();
 
 //Middlwares
 app.use(morgan('dev'));
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -24,7 +25,7 @@ const posts = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/posts-simple.json`)
 );
 
-//Controllers
+//Posts Controllers
 const getAllPosts = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -35,7 +36,6 @@ const getAllPosts = (req, res) => {
     },
   });
 };
-
 const getPost = (req, res) => {
   console.log(req.params);
   const id = req.params.id * 1;
@@ -53,7 +53,6 @@ const getPost = (req, res) => {
     },
   });
 };
-
 const createPost = (req, res) => {
   const newId = posts[posts.length - 1].id + 1;
   const newPost = Object.assign({ id: newId }, req.body);
@@ -71,7 +70,6 @@ const createPost = (req, res) => {
     }
   );
 };
-
 const updatePost = (req, res) => {
   if (req.params.id * 1 > posts.length) {
     return res.status(404).json({
@@ -86,7 +84,6 @@ const updatePost = (req, res) => {
     },
   });
 };
-
 const deletePost = (req, res) => {
   if (req.params.id * 1 > posts.length) {
     return res.status(404).json({
@@ -100,19 +97,51 @@ const deletePost = (req, res) => {
   });
 };
 
-//Routes
+//Users Controller
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'Route not yet ready.',
+  });
+};
+const getUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'Route not yet ready.',
+  });
+};
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'Route not yet ready.',
+  });
+};
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'Route not yet ready.',
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'Route not yet ready.',
+  });
+};
+
+//Posts Routes
 app.get('/api/v1/posts', getAllPosts);
 app.post('/api/v1/posts', createPost);
 app.get('/api/v1/posts/:id', getPost);
 app.patch('/api/v1/posts/:id', updatePost);
 app.delete('/api/v1/posts/:id', deletePost);
 
-// app.route('/api/v1/posts').get(getAllPosts).post(createPost);
-// app
-//   .route('/api/v1/posts/:id')
-//   .get(getPost)
-//   .patch(updatePost)
-//   .delete(deletePost);
+//Users Routes
+app.get('/api/v1/users', getAllUsers);
+app.post('/api/v1/users', createUser);
+app.get('/api/v1/users/:id', getUser);
+app.patch('/api/v1/users/:id', updateUser);
+app.delete('/api/v1/users/:id', deleteUser);
 
 //Server
 const port = process.env.PORT || 4000;
