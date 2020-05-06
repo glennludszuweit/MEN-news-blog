@@ -175,5 +175,12 @@
     "author": "Glenn Ludszuweit",
     "description": "This is just a test post.",
     "content": "This is just a test post."
+  },
+  {
+    "id": 17,
+    "title": "Test Post",
+    "author": "Glenn Ludszuweit",
+    "description": "This is just a test post.",
+    "content": "This is just a test post."
   }
 ]

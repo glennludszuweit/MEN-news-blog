@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 const fs = require('fs');
 
 const posts = JSON.parse(
@@ -51,12 +52,14 @@ module.exports = {
 
   createPost: (req, res) => {
     const newId = posts[posts.length - 1].id + 1;
-    const newPost = Object.assign({ id: newId }, req.body);
+    // const newPost = Object.assign({ id: newId }, req.body);
+    const newPost = { id: newId, ...req.body };
+
     posts.push(newPost);
     fs.writeFile(
       `${__dirname}/../dev-data/data/posts-simple.json`,
       JSON.stringify(posts),
-      (err) => {
+      () => {
         res.status(201).json({
           status: 'success',
           data: {

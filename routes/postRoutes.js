@@ -1,5 +1,6 @@
 const express = require('express');
 const postsController = require('../controllers/postsController');
+
 const router = express.Router();
 
 router.param('id', postsController.checkId);
