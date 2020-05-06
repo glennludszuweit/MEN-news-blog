@@ -16,6 +16,16 @@ module.exports = {
     next();
   },
 
+  checkBody: (req, res, next) => {
+    if (!req.body.title || !req.body.content) {
+      res.status(400).json({
+        status: 'fail',
+        message: 'Missing Title or Content',
+      });
+    }
+    next();
+  },
+
   getAllPosts: (req, res) => {
     res.status(200).json({
       status: 'success',

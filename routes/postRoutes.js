@@ -6,7 +6,7 @@ router.param('id', postsController.checkId);
 
 router.get('/', postsController.getAllPosts);
 
-router.post('/', postsController.createPost);
+router.post('/', postsController.checkBody, postsController.createPost);
 
 router.get('/:id', postsController.getPost);
 
