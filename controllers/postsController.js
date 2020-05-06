@@ -5,6 +5,17 @@ const posts = JSON.parse(
 );
 
 module.exports = {
+  checkId: (req, res, next, val) => {
+    console.log(`Post id is: ${val}`);
+    if (req.params.id * 1 > posts.length) {
+      return res.status(404).json({
+        status: 'Failed',
+        message: 'Invalid Id',
+      });
+    }
+    next();
+  },
+
   getAllPosts: (req, res) => {
     res.status(200).json({
       status: 'success',
@@ -19,12 +30,6 @@ module.exports = {
   getPost: (req, res) => {
     console.log(req.params);
     const id = req.params.id * 1;
-    if (id > posts.length) {
-      return res.status(404).json({
-        status: 'Failed',
-        message: 'Invalid Id',
-      });
-    }
     const post = posts.find((el) => el.id === id);
     res.status(200).json({
       status: 'success',
@@ -53,12 +58,6 @@ module.exports = {
   },
 
   updatePost: (req, res) => {
-    if (req.params.id * 1 > posts.length) {
-      return res.status(404).json({
-        status: 'Failed',
-        message: 'Invalid Id',
-      });
-    }
     res.status(200).json({
       status: 'success',
       data: {
@@ -68,12 +67,6 @@ module.exports = {
   },
 
   deletePost: (req, res) => {
-    if (req.params.id * 1 > posts.length) {
-      return res.status(404).json({
-        status: 'Failed',
-        message: 'Invalid Id',
-      });
-    }
     res.status(204).json({
       status: 'success',
       data: null,
