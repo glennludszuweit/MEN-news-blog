@@ -10,6 +10,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please add a description for this topic.'],
   },
+  introduction: {
+    type: String,
+    required: [true, 'An article must have contents.'],
+  },
   content: {
     type: String,
     required: [true, 'An article must have contents.'],
@@ -20,7 +24,16 @@ const postSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: [true, 'Please select category'],
+    required: [true, 'Please select category.'],
+  },
+  coverImage: {
+    type: String,
+    required: [true, 'A posts must have a cover image.'],
+  },
+  images: [String],
+  createdAt: {
+    type: Date,
+    default: Date.now(),
   },
 });
 

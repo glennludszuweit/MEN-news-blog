@@ -48,7 +48,7 @@ module.exports = {
     } catch (error) {
       res.status(400).json({
         status: 'fail',
-        message: 'Invalid data',
+        message: error.message,
       });
     }
   },
