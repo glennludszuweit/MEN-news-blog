@@ -1,17 +1,6 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
 const Post = require('../models/Post');
 
 module.exports = {
-  checkBody: (req, res, next) => {
-    if (!req.body.title || !req.body.content) {
-      res.status(400).json({
-        status: 'fail',
-        message: 'Missing Title or Content',
-      });
-    }
-    next();
-  },
-
   getAllPosts: (req, res) => {
     res.status(200).json({
       status: 'success',
@@ -35,13 +24,22 @@ module.exports = {
     // });
   },
 
-  createPost: (req, res) => {
-    res.status(201).json({
-      status: 'success',
-      // data: {
-      //   post: newPost,
-      // },
-    });
+  createPost: async (req, res) => {
+    try {
+      const newPost = await Post.create(req.body);
+
+      res.status(201).json({
+        status: 'success',
+        data: {
+          post: newPost,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: 'fail',
+        message: 'Invalid data',
+      });
+    }
   },
 
   updatePost: (req, res) => {

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', postsController.getAllPosts);
 
-router.post('/', postsController.checkBody, postsController.createPost);
+router.post('/', postsController.createPost);
 
 router.get('/:id', postsController.getPost);
 
