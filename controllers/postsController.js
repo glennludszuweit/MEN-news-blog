@@ -3,13 +3,21 @@ const Post = require('../models/Post');
 module.exports = {
   getAllPosts: async (req, res) => {
     try {
-      // eslint-disable-next-line node/no-unsupported-features/es-syntax
       //Build query
+      //filtering
+      // eslint-disable-next-line node/no-unsupported-features/es-syntax
       const queryObj = { ...req.query };
       const excludedFields = ['page', 'sort', 'limit', 'fields'];
       excludedFields.forEach((el) => delete queryObj[el]);
 
-      const query = Post.find(queryObj);
+      //advance filter
+      let queryStr = JSON.stringify(queryObj);
+      queryStr = queryStr.replace(
+        /\b(gte|gt|lte|lt)\b/g,
+        (match) => `$${match}`
+      );
+
+      const query = Post.find(JSON.parse(queryStr));
 
       //Execute query
       const posts = await query;
