@@ -1,33 +1,44 @@
 const Post = require('../models/Post');
 
 module.exports = {
-  getAllPosts: (req, res) => {
-    res.status(200).json({
-      status: 'success',
-      requestedAt: req.requestTime,
-      // results: posts.length,
-      // data: {
-      //   posts,
-      // },
-    });
+  getAllPosts: async (req, res) => {
+    try {
+      const posts = await Post.find();
+      res.status(200).json({
+        status: 'success',
+        results: posts.length,
+        data: {
+          posts,
+        },
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 'fail',
+        message: 'Missing data',
+      });
+    }
   },
 
-  getPost: (req, res) => {
-    console.log(req.params);
-    const id = req.params.id * 1;
-    // const post = posts.find((el) => el.id === id);
-    // res.status(200).json({
-    //   status: 'success',
-    //   data: {
-    //     post,
-    //   },
-    // });
+  getPost: async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      res.status(200).json({
+        status: 'success',
+        data: {
+          post,
+        },
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 'fail',
+        message: 'Post not found',
+      });
+    }
   },
 
   createPost: async (req, res) => {
     try {
       const newPost = await Post.create(req.body);
-
       res.status(201).json({
         status: 'success',
         data: {
