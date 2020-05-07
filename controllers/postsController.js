@@ -3,7 +3,17 @@ const Post = require('../models/Post');
 module.exports = {
   getAllPosts: async (req, res) => {
     try {
-      const posts = await Post.find();
+      // eslint-disable-next-line node/no-unsupported-features/es-syntax
+      //Build query
+      const queryObj = { ...req.query };
+      const excludedFields = ['page', 'sort', 'limit', 'fields'];
+      excludedFields.forEach((el) => delete queryObj[el]);
+
+      const query = Post.find(queryObj);
+
+      //Execute query
+      const posts = await query;
+
       res.status(200).json({
         status: 'success',
         results: posts.length,
