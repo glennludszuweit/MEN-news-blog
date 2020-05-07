@@ -53,13 +53,24 @@ module.exports = {
     }
   },
 
-  updatePost: (req, res) => {
-    res.status(200).json({
-      status: 'success',
-      data: {
-        tour: '<Updated>',
-      },
-    });
+  updatePost: async (req, res) => {
+    try {
+      const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      });
+      res.status(200).json({
+        status: 'success',
+        data: {
+          post,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: 'fail',
+        message: error.message,
+      });
+    }
   },
 
   deletePost: (req, res) => {
