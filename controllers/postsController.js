@@ -9,7 +9,6 @@ module.exports = {
       const queryObj = { ...req.query };
       const excludedFields = ['page', 'sort', 'limit', 'fields'];
       excludedFields.forEach((el) => delete queryObj[el]);
-
       //advance filter
       let queryStr = JSON.stringify(queryObj);
       queryStr = queryStr.replace(
@@ -17,7 +16,16 @@ module.exports = {
         (match) => `$${match}`
       );
 
-      const query = Post.find(JSON.parse(queryStr));
+      let query = Post.find(JSON.parse(queryStr));
+
+      //Sorting
+      if (req.query.sort) {
+        // eslint-disable-next-line no-use-before-define
+        const sortBy = req.query.sort.split(',').join(' ');
+        query = query.sort(sortBy);
+      } else {
+        query = query.sort('-createdAt');
+      }
 
       //Execute query
       const posts = await query;
