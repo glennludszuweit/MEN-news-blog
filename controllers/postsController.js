@@ -4,7 +4,7 @@ module.exports = {
   getAllPosts: async (req, res) => {
     try {
       //Build query
-      //filtering
+      //1.filtering
       // eslint-disable-next-line node/no-unsupported-features/es-syntax
       const queryObj = { ...req.query };
       const excludedFields = ['page', 'sort', 'limit', 'fields'];
@@ -18,7 +18,7 @@ module.exports = {
 
       let query = Post.find(JSON.parse(queryStr));
 
-      //Sorting
+      //2.Sorting
       if (req.query.sort) {
         // eslint-disable-next-line no-use-before-define
         const sortBy = req.query.sort.split(',').join(' ');
@@ -27,13 +27,27 @@ module.exports = {
         query = query.sort('-createdAt');
       }
 
-      //Field Limiting
+      //3.Field Limiting(PROJECTION)
       if (req.query.fields) {
         // eslint-disable-next-line no-use-before-define
         const fields = req.query.fields.split(',').join(' ');
         query = query.select(fields);
       } else {
         query = query.select('-__v');
+      }
+
+      //4.Page & Limit (PAGINATION)
+      const page = req.query.page * 1 || 1;
+      const limit = req.query.limit * 1 || 100;
+      const skip = (page - 1) * limit;
+
+      query = query.skip(skip).limit(limit);
+
+      if (req.query.page) {
+        const postsCount = await Post.countDocuments();
+        if (skip >= postsCount) {
+          throw new Error(`This page doesn't exist.`);
+        }
       }
 
       //Execute query
