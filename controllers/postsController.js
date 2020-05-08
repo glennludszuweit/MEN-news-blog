@@ -27,6 +27,15 @@ module.exports = {
         query = query.sort('-createdAt');
       }
 
+      //Field Limiting
+      if (req.query.fields) {
+        // eslint-disable-next-line no-use-before-define
+        const fields = req.query.fields.split(',').join(' ');
+        query = query.select(fields);
+      } else {
+        query = query.fields('-__v');
+      }
+
       //Execute query
       const posts = await query;
 
