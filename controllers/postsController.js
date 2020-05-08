@@ -33,7 +33,7 @@ module.exports = {
         const fields = req.query.fields.split(',').join(' ');
         query = query.select(fields);
       } else {
-        query = query.fields('-__v');
+        query = query.select('-__v');
       }
 
       //Execute query
@@ -49,7 +49,7 @@ module.exports = {
     } catch (error) {
       res.status(404).json({
         status: 'fail',
-        message: 'Missing data',
+        message: error.message,
       });
     }
   },
