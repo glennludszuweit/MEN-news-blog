@@ -7,7 +7,8 @@
     "start:dev": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "post:import": "node dev-data/data/import-dev-data.js --import",
-    "post:delete": "node dev-data/data/import-dev-data.js --delete"
+    "post:delete": "node dev-data/data/import-dev-data.js --delete",
+    "debug": "ndb server.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",
+    "ndb": "^1.1.5",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5"
   }
