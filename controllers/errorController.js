@@ -1,4 +1,4 @@
-const AppError = require('../utils/appError');
+const AppError = require('../utils/AppError');
 
 module.exports = {
   globalErrorHanlder: (error, req, res, next) => {

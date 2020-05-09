@@ -1,9 +1,10 @@
 const Post = require('../models/Post');
-const APIFeatures = require('../utils/apiFeatures');
-const catchAsync = require('../utils/catchAsync');
+const APIFeatures = require('../utils/ApiFeatures');
+const CatchAsync = require('../utils/CatchAsync');
+const AppError = require('../utils/AppError');
 
 module.exports = {
-  getAllPosts: catchAsync(async (req, res) => {
+  getAllPosts: CatchAsync(async (req, res, next) => {
     //Execute query
     const features = new APIFeatures(Post.find(), req.query)
       .filter()
@@ -22,8 +23,13 @@ module.exports = {
     });
   }),
 
-  getPost: catchAsync(async (req, res) => {
+  getPost: CatchAsync(async (req, res, next) => {
     const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return next(new AppError('Post not found.', 404));
+    }
+
     res.status(200).json({
       status: 'success',
       data: {
@@ -32,7 +38,7 @@ module.exports = {
     });
   }),
 
-  createPost: catchAsync(async (req, res) => {
+  createPost: CatchAsync(async (req, res, next) => {
     const newPost = await Post.create(req.body);
     res.status(201).json({
       status: 'success',
@@ -42,11 +48,16 @@ module.exports = {
     });
   }),
 
-  updatePost: catchAsync(async (req, res) => {
+  updatePost: CatchAsync(async (req, res, next) => {
     const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
+
+    if (!post) {
+      return next(new AppError('Post not found.', 404));
+    }
+
     res.status(200).json({
       status: 'success',
       data: {
@@ -55,8 +66,13 @@ module.exports = {
     });
   }),
 
-  deletePost: catchAsync(async (req, res) => {
-    await Post.findByIdAndDelete(req.params.id);
+  deletePost: CatchAsync(async (req, res, next) => {
+    const post = await Post.findByIdAndDelete(req.params.id);
+
+    if (!post) {
+      return next(new AppError('Post not found.', 404));
+    }
+
     res.status(204).json({
       status: 'success',
       data: null,
