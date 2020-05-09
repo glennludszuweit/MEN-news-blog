@@ -5,6 +5,8 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Title is needed.'],
     unique: true,
+    maxlength: [40, 'Title must have a maximum of 40 characters'],
+    trim: true,
   },
   description: {
     type: String,
@@ -25,6 +27,10 @@ const postSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, 'Please select category.'],
+    enum: {
+      values: ['Politics', 'Technology', 'Entertainment', 'Travel', 'Sport'],
+      message: 'Category not found.',
+    },
   },
   coverImage: {
     type: String,
