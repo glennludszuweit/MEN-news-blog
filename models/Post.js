@@ -14,7 +14,7 @@ const postSchema = new mongoose.Schema({
   },
   introduction: {
     type: String,
-    required: [true, 'An article must have contents.'],
+    required: [true, 'An article must have introduction.'],
   },
   content: {
     type: String,
