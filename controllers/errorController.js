@@ -1,3 +1,5 @@
+const AppError = require('../utils/appError');
+
 module.exports = {
   globalErrorHanlder: (error, req, res, next) => {
     console.log(error.stack);
@@ -7,5 +9,9 @@ module.exports = {
       status: error.status,
       message: error.message,
     });
+  },
+
+  operationalErrorHandling: (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl}`, 404));
   },
 };
