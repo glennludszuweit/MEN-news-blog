@@ -1,5 +1,10 @@
 const AppError = require('../utils/AppError');
 
+const handleCastErrorDB = (error) => {
+  const message = `Invalid ${error.path}: ${error.value}`;
+  return new AppError(message, 400);
+};
+
 const errorDev = (error, res) => {
   res.status(error.statusCode).json({
     status: error.status,
@@ -36,7 +41,10 @@ module.exports = {
     if (process.env.NODE_ENV === 'development') {
       errorDev(error, res);
     } else if (process.env.NODE_ENV === 'production') {
-      errorProd(error, res);
+      // eslint-disable-next-line node/no-unsupported-features/es-syntax
+      let err = { ...error };
+      if (err.name === 'CastError') err = handleCastErrorDB(err);
+      errorProd(err, res);
     }
   },
 

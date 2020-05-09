@@ -4,7 +4,7 @@
   "description": "News Blog",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon server.js",
+    "start:dev": "NODE_ENV=development nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "post:import": "node dev-data/data/import-dev-data.js --import",
     "post:delete": "node dev-data/data/import-dev-data.js --delete",
