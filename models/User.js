@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Email invalid.'],
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
+  },
   password: {
     type: String,
     required: [true, 'Passwordm required.'],
@@ -36,10 +41,10 @@ const userSchema = new mongoose.Schema({
       messsage: 'Password mismatched!',
     },
   },
-  passwordChangedAt: {
-    type: Date,
-    default: Date.now(),
-  },
+  // passwordChangedAt: {
+  //   type: Date,
+  //   default: Date.now(),
+  // },
 });
 
 userSchema.pre('save', async function (next) {

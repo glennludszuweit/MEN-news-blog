@@ -50,7 +50,7 @@ module.exports = {
     });
   }),
 
-  protect: CatchAsync(async (req, res, next) => {
+  protectRoute: CatchAsync(async (req, res, next) => {
     //Get token
     let token;
     if (
@@ -65,15 +65,24 @@ module.exports = {
     //Validate token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     //Check if User still authorized
-    const updatedUser = await User.findById(decoded.id);
-    if (!updatedUser) {
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
       return next(new AppError('This user does not exist.', 401));
     }
     //Check if user changed password/token
-    if (updatedUser.afterChangedPassword(decoded.iat)) {
+    if (currentUser.afterChangedPassword(decoded.iat)) {
       return next(new AppError('Password changed. Please try again.', 401));
     }
-    req.user = updatedUser;
+    req.user = currentUser;
     next();
   }),
+
+  restrictRouteTo: (...roles) => {
+    return (req, res, next) => {
+      if (!roles.includes(req.user.role)) {
+        return next(new AppError('Permission deneid.', 403));
+      }
+      next();
+    };
+  },
 };
