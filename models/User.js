@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
@@ -41,10 +42,9 @@ const userSchema = new mongoose.Schema({
       messsage: 'Password mismatched!',
     },
   },
-  // passwordChangedAt: {
-  //   type: Date,
-  //   default: Date.now(),
-  // },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
 userSchema.pre('save', async function (next) {
@@ -75,6 +75,19 @@ userSchema.methods.afterChangedPassword = function (JWTTimeStamp) {
   }
   //Not changed
   return false;
+};
+
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  console.log({ resetToken }, this.passwordResetToken);
+
+  this.passwordResetExpires = Date.now() + 60 * 60 * 1000;
+  return resetToken;
 };
 
 const User = mongoose.model('User', userSchema);

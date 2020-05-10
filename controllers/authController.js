@@ -85,4 +85,20 @@ module.exports = {
       next();
     };
   },
+
+  forgetPassword: CatchAsync(async (req, res, next) => {
+    //get user by email
+    const user = await User.findOne({
+      email: req.body.email,
+    });
+    if (!user) {
+      return next(new AppError('User email does not exist.', 404));
+    }
+    //generate random token
+    const resetToken = user.createPasswordResetToken();
+    await user.save({ validateBeforeSave: false });
+    //send token to email
+  }),
+
+  resetPassword: (req, res, next) => {},
 };
