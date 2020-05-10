@@ -17,10 +17,10 @@ const handleValidationErrorDB = (error) => {
   return new AppError(message, 400);
 };
 
-const handleJsonWebTokenError = (error) =>
+const handleJsonWebTokenError = () =>
   new AppError('Invalid token. Please try again.', 401);
 
-const handleTokenExpiredError = (error) =>
+const handleTokenExpiredError = () =>
   new AppError('Token is expired. Please try again.', 401);
 
 const errorDev = (error, res) => {

@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Name required.'],
   },
+  profileImg: String,
   email: {
     type: String,
     required: [true, 'Email is required.'],
@@ -35,7 +36,10 @@ const userSchema = new mongoose.Schema({
       messsage: 'Password mismatched!',
     },
   },
-  profileImg: String,
+  passwordChangedAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 userSchema.pre('save', async function (next) {
@@ -53,6 +57,19 @@ userSchema.methods.correctPassword = async function (
   userPassword
 ) {
   return await bcryptjs.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.afterChangedPassword = function (JWTTimeStamp) {
+  if (this.passwordChangedAt) {
+    // eslint-disable-next-line radix
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return JWTTimeStamp < changedTimeStamp;
+  }
+  //Not changed
+  return false;
 };
 
 const User = mongoose.model('User', userSchema);

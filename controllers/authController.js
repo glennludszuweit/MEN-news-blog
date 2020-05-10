@@ -64,9 +64,16 @@ module.exports = {
     }
     //Validate token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    console.log(decoded);
-    //Check if User still logged in
+    //Check if User still authorized
+    const updatedUser = await User.findById(decoded.id);
+    if (!updatedUser) {
+      return next(new AppError('This user does not exist.', 401));
+    }
     //Check if user changed password/token
+    if (updatedUser.afterChangedPassword(decoded.iat)) {
+      return next(new AppError('Password changed. Please try again.', 401));
+    }
+    req.user = updatedUser;
     next();
   }),
 };
