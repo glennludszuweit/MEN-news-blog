@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
       'Only alphanumeric is accepted(a-z, 0-9).',
     ],
     minlength: [6, 'Password must have atleast 6 characters.'],
+    select: false,
   },
   confirmPassword: {
     type: String,
@@ -46,6 +47,13 @@ userSchema.pre('save', async function (next) {
   this.confirmPassword = undefined;
   next();
 });
+
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword
+) {
+  return await bcryptjs.compare(candidatePassword, userPassword);
+};
 
 const User = mongoose.model('User', userSchema);
 
