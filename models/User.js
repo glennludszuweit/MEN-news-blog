@@ -25,6 +25,13 @@ const userSchema = new mongoose.Schema({
   confirmPassword: {
     type: String,
     required: [true, 'Please confirm password'],
+    validate: {
+      //works only on save & create
+      validator: function (el) {
+        return el === this.password;
+      },
+      messsage: 'Password mismatched!',
+    },
   },
   profileImg: String,
 });
