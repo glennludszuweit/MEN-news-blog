@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
+const SendEmail = require('../utils/SendEmail');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -94,10 +95,33 @@ module.exports = {
     if (!user) {
       return next(new AppError('User email does not exist.', 404));
     }
+
     //generate random token
     const resetToken = user.createPasswordResetToken();
     await user.save({ validateBeforeSave: false });
+
     //send token to email
+    const resetURL = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/resetPassword/${resetToken}`;
+    const message = `Submit new password and confirm to: ${resetURL}`;
+    try {
+      await SendEmail({
+        email: user.email,
+        subject: 'NEWSBLOG - New Password (valid for 30mins).',
+        message,
+      });
+      res.status(200).json({
+        status: 'success',
+        message: 'Token sent to email!',
+      });
+    } catch (error) {
+      user.passwordResetToken = undefined;
+      user.passwordResetExpires = undefined;
+      await user.save({ validateBeforeSave: false });
+      console.log(error);
+      return next(new AppError('Error occur sending email. Try again.', 500));
+    }
   }),
 
   resetPassword: (req, res, next) => {},
