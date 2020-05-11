@@ -12,6 +12,18 @@ const signToken = (id) => {
   });
 };
 
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user,
+    },
+  });
+};
+
 module.exports = {
   signup: CatchAsync(async (req, res, next) => {
     const newUser = await User.create({
@@ -21,15 +33,7 @@ module.exports = {
       confirmPassword: req.body.confirmPassword,
     });
 
-    const token = signToken(newUser._id);
-
-    res.status(201).json({
-      status: 'success',
-      token,
-      data: {
-        user: newUser,
-      },
-    });
+    createSendToken(newUser, 201, res);
   }),
 
   login: CatchAsync(async (req, res, next) => {
@@ -45,11 +49,7 @@ module.exports = {
       return next(new AppError('Incorrect email or password', 401));
     }
     //send token to client
-    const token = signToken(user._id);
-    res.status(200).json({
-      status: 'success',
-      token,
-    });
+    createSendToken(user, 200, res);
   }),
 
   protectRoute: CatchAsync(async (req, res, next) => {
@@ -146,12 +146,29 @@ module.exports = {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save();
+
     //update changedPasswordAt property
     //log user in, send JWT
-    const token = signToken(user._id);
-    res.status(200).json({
-      status: 'success',
-      token,
-    });
+    createSendToken(user, 200, res);
+  }),
+
+  updatePassword: CatchAsync(async (req, res, next) => {
+    //get user from collection
+    const user = await User.findById(req.user.id).select('+password');
+
+    //check current password
+    if (
+      !(await user.correctPassword(req.body.currentPassword, user.password))
+    ) {
+      return next(new AppError('Current password did not match.', 401));
+    }
+
+    //update password
+    user.password = req.body.password;
+    user.confirmPassword = req.body.confirmPassword;
+    await user.save();
+
+    //log user in with new password
+    createSendToken(user, 200, res);
   }),
 };
