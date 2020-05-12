@@ -24,7 +24,7 @@ module.exports = {
   }),
 
   getPost: CatchAsync(async (req, res, next) => {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate('comments');
 
     if (!post) {
       return next(new AppError('Post not found.', 404));
