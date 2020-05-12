@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./User');
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -20,10 +21,11 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: [true, 'An article must have contents.'],
   },
-  author: {
-    type: String,
-    required: [true, 'Who is the author?'],
-  },
+  // author: {
+  //   type: String,
+  //   required: [true, 'Who is the author?'],
+  // },
+  author: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   category: {
     type: String,
     required: [true, 'Please select category.'],
