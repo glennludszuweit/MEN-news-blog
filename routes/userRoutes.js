@@ -15,6 +15,12 @@ router.patch(
   authController.updatePassword
 );
 
+router.patch(
+  '/updateMe',
+  authController.protectRoute,
+  usersController.updateMe
+);
+
 router.get(
   '/',
   authController.protectRoute,
@@ -28,12 +34,7 @@ router.get(
   authController.restrictRouteTo('admin', 'user'),
   usersController.getUser
 );
-router.patch(
-  '/:id',
-  authController.protectRoute,
-  authController.restrictRouteTo('admin', 'user'),
-  usersController.updateUser
-);
+router.patch('/:id', authController.protectRoute, usersController.updateUser);
 router.delete(
   '/:id',
   authController.protectRoute,
