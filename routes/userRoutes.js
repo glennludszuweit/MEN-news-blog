@@ -29,8 +29,8 @@ router.delete(
 
 router.get(
   '/',
-  authController.protectRoute,
-  authController.restrictRouteTo('admin'),
+  // authController.protectRoute,
+  // authController.restrictRouteTo('admin'),
   usersController.getAllUsers
 );
 router.post('/', usersController.createUser);

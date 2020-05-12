@@ -8,6 +8,7 @@ const hpp = require('hpp');
 
 const errorController = require('./controllers/errorController');
 
+const commentRouter = require('./routes/commentRoutes');
 const postRouter = require('./routes/postRoutes');
 const userRouter = require('./routes/userRoutes');
 
@@ -55,6 +56,7 @@ app.use((req, res, next) => {
 });
 
 //Routes
+app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/users', userRouter);
 
