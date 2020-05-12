@@ -27,7 +27,7 @@ const commentSchema = new mongoose.Schema(
   }
 );
 
-commentSchema.remove(/^find/, function (next) {
+commentSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'post',
     select: 'name',
