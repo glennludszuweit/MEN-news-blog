@@ -27,6 +27,16 @@ const commentSchema = new mongoose.Schema(
   }
 );
 
+commentSchema.remove(/^find/, function (next) {
+  this.populate({
+    path: 'post',
+    select: 'name',
+  }).populate({
+    path: 'user',
+    select: 'name profileImg',
+  });
+});
+
 const Comment = mongoose.model('Comment', commentSchema);
 
 module.exports = Comment;
