@@ -4,6 +4,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const hpp = require('hpp');
 
 const errorController = require('./controllers/errorController');
 
@@ -32,6 +33,13 @@ app.use('/api', limiter);
 //Data sanitization for nosql query injection and xss
 app.use(mongoSanitize());
 app.use(xss());
+
+//prevent params pollution
+app.use(
+  hpp({
+    whitelist: ['title', 'author', 'category', 'createdAt'],
+  })
+);
 
 //Body parser
 app.use(express.json({}));
