@@ -30,11 +30,12 @@ const commentSchema = new mongoose.Schema(
 commentSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'post',
-    select: 'name',
+    select: 'title',
   }).populate({
     path: 'user',
     select: 'name profileImg',
   });
+  next();
 });
 
 const Comment = mongoose.model('Comment', commentSchema);

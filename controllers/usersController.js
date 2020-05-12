@@ -49,7 +49,7 @@ module.exports = {
       );
     }
     //update user document
-    const filteredBody = filterObj(req.body, 'name', 'email');
+    const filteredBody = filterObj(req.body, 'name', 'email', 'profileImg');
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
       filteredBody,
