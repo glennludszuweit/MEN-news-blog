@@ -3,7 +3,9 @@ const CatchAsync = require('../utils/CatchAsync');
 
 module.exports = {
   getAllComments: CatchAsync(async (req, res, next) => {
-    const comments = await Comment.find();
+    let filter = {};
+    if (req.params.id) filter = { post: req.params.id };
+    const comments = await Comment.find(filter);
 
     res.status(200).json({
       status: 'success',
