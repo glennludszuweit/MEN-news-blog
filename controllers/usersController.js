@@ -2,6 +2,7 @@ const User = require('../models/User');
 // const APIFeatures = require('../utils/ApiFeatures');
 const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
+const factory = require('./handlerFactory');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -84,10 +85,5 @@ module.exports = {
     });
   }),
 
-  deleteUser: (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'Route not yet ready.',
-    });
-  },
+  deleteUser: factory.deleteOne(User),
 };

@@ -1,5 +1,6 @@
 const Comment = require('../models/Comment');
 const CatchAsync = require('../utils/CatchAsync');
+const factory = require('./handlerFactory');
 
 module.exports = {
   getAllComments: CatchAsync(async (req, res, next) => {
@@ -28,4 +29,6 @@ module.exports = {
       },
     });
   }),
+
+  deleteComment: factory.deleteOne(Comment),
 };

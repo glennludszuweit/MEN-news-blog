@@ -2,6 +2,7 @@ const Post = require('../models/Post');
 const APIFeatures = require('../utils/ApiFeatures');
 const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
+const factory = require('./handlerFactory');
 
 module.exports = {
   getAllPosts: CatchAsync(async (req, res, next) => {
@@ -66,16 +67,5 @@ module.exports = {
     });
   }),
 
-  deletePost: CatchAsync(async (req, res, next) => {
-    const post = await Post.findByIdAndDelete(req.params.id);
-
-    if (!post) {
-      return next(new AppError('Post not found.', 404));
-    }
-
-    res.status(204).json({
-      status: 'success',
-      data: null,
-    });
-  }),
+  deletePost: factory.deleteOne(Post),
 };

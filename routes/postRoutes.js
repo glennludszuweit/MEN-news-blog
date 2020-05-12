@@ -20,11 +20,6 @@ router.patch(
   postsController.updatePost
 );
 
-router.delete(
-  '/:id',
-  authController.protectRoute,
-  authController.restrictRouteTo('admin'),
-  postsController.deletePost
-);
+router.delete('/:id', authController.protectRoute, postsController.deletePost);
 
 module.exports = router;
