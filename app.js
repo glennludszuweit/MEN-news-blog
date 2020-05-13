@@ -83,6 +83,12 @@ app.get('/auth', (req, res) => {
   });
 });
 
+app.get('/post', (req, res) => {
+  res.status(200).render('post', {
+    title: 'Post Title',
+  });
+});
+
 //API Routes
 app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/posts', postRouter);
