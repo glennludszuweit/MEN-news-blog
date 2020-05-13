@@ -12,7 +12,11 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 module.exports = {
-  updateMe: CatchAsync(async (req, res, next) => {
+  getProfile: (req, res, next) => {
+    req.params.id = req.user.id;
+    next();
+  },
+  updateProfile: CatchAsync(async (req, res, next) => {
     //create error if user post password data
     if (req.body.password || req.body.confirmPassword) {
       return next(
@@ -39,7 +43,7 @@ module.exports = {
       },
     });
   }),
-  deleteMe: CatchAsync(async (req, res, next) => {
+  deleteProfile: CatchAsync(async (req, res, next) => {
     await User.findByIdAndUpdate(req.user.id, {
       active: false,
     });

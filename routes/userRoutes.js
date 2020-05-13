@@ -15,16 +15,21 @@ router.patch(
   authController.updatePassword
 );
 
-router.patch(
-  '/updateMe',
+router.get(
+  '/profile',
   authController.protectRoute,
-  usersController.updateMe
+  usersController.getProfile,
+  usersController.getUser
 );
-
-router.delete(
-  '/deleteMe',
+router.patch(
+  '/updateProfile',
   authController.protectRoute,
-  usersController.deleteMe
+  usersController.updateProfile
+);
+router.delete(
+  '/deleteProfile',
+  authController.protectRoute,
+  usersController.deleteProfile
 );
 
 router.get(
@@ -36,12 +41,7 @@ router.get(
 
 router.post('/', usersController.createUser);
 
-router.get(
-  '/:id',
-  authController.protectRoute,
-  authController.restrictRouteTo('admin', 'user'),
-  usersController.getUser
-);
+router.get('/:id', authController.protectRoute, usersController.getUser);
 
 router.patch('/:id', authController.protectRoute, usersController.updateUser);
 
