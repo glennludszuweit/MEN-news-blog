@@ -36,7 +36,6 @@ module.exports = {
         },
       });
     }),
-
   getOne: (Model, populateOpt) =>
     CatchAsync(async (req, res, next) => {
       let query = Model.findById(req.params.id);

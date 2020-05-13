@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const postSchema = new mongoose.Schema(
   {
@@ -49,11 +50,20 @@ const postSchema = new mongoose.Schema(
   }
 );
 
+//Index
+postSchema.index({ slug: 1 });
+
 //Virtual populate comments
 postSchema.virtual('comments', {
   ref: 'Comment',
   foreignField: 'post',
   localField: '_id',
+});
+
+//Slugify
+postSchema.pre('save', function (next) {
+  this.slug = slugify(this.title, { lower: true });
+  next();
 });
 
 const Post = mongoose.model('Post', postSchema);
