@@ -24,10 +24,6 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Passwordm required.'],
-    validate: [
-      validator.isAlphanumeric,
-      'Only alphanumeric is accepted(a-z, 0-9).',
-    ],
     minlength: [6, 'Password must have atleast 6 characters.'],
     select: false,
   },
