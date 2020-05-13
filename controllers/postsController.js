@@ -39,17 +39,7 @@ module.exports = {
     });
   }),
 
-  createPost: CatchAsync(async (req, res, next) => {
-    const newPost = await Post.create(req.body);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        post: newPost,
-      },
-    });
-  }),
-
+  createPost: factory.createOne(Post),
   updatePost: factory.updateOne(Post),
-
   deletePost: factory.deleteOne(Post),
 };

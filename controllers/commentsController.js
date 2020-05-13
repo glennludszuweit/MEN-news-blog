@@ -17,20 +17,13 @@ module.exports = {
     });
   }),
 
-  createComment: CatchAsync(async (req, res, next) => {
+  setPostUserIds: (req, res, next) => {
     if (!req.body.post) req.body.post = req.params.id;
     if (!req.body.user) req.body.user = req.user.id;
-    const newComment = await Comment.create(req.body);
+    next();
+  },
 
-    res.status(200).json({
-      status: 'success',
-      data: {
-        comments: newComment,
-      },
-    });
-  }),
-
+  createComment: factory.createOne(Comment),
   updateComment: factory.updateOne(Comment),
-
   deleteComment: factory.deleteOne(Comment),
 };

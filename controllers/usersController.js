@@ -32,13 +32,6 @@ module.exports = {
     });
   },
 
-  createUser: (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'Route not yet ready.',
-    });
-  },
-
   updateMe: CatchAsync(async (req, res, next) => {
     //create error if user post password data
     if (req.body.password || req.body.confirmPassword) {
@@ -78,7 +71,7 @@ module.exports = {
     });
   }),
 
+  createUser: factory.updateOne(User),
   updateUser: factory.updateOne(User),
-
   deleteUser: factory.deleteOne(User),
 };

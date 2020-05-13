@@ -6,7 +6,12 @@ const router = express.Router({ mergeParams: true });
 
 router.get('/', commentsController.getAllComments);
 
-router.post('/', authController.protectRoute, commentsController.createComment);
+router.post(
+  '/',
+  authController.protectRoute,
+  commentsController.setPostUserIds,
+  commentsController.createComment
+);
 
 router.patch(
   '/:id',
