@@ -77,6 +77,12 @@ app.get('/single', (req, res) => {
   });
 });
 
+app.get('/auth', (req, res) => {
+  res.status(200).render('auth', {
+    title: 'Login or Register',
+  });
+});
+
 //API Routes
 app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/posts', postRouter);
