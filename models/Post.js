@@ -26,6 +26,7 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Who is the author?'],
     },
+    slug: String,
     category: {
       type: String,
       required: [true, 'Please select category.'],

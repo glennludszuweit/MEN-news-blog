@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const path = require('path');
 
 const errorController = require('./controllers/errorController');
 
@@ -15,6 +16,13 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 
 //Middlwares
+//Set view engine
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+//Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
 //http security header
 app.use(helmet());
 
@@ -45,9 +53,6 @@ app.use(
 //Body parser
 app.use(express.json({}));
 
-//Serve static files
-app.use(express.static(`${__dirname}/public`));
-
 //Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
@@ -56,6 +61,11 @@ app.use((req, res, next) => {
 });
 
 //Routes
+app.get('/', (req, res) => {
+  res.status(200).render('base');
+});
+
+//API Routes
 app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/users', userRouter);
