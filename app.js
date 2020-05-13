@@ -61,31 +61,50 @@ app.use((req, res, next) => {
 });
 
 //Routes
-// app.get('/base', (req, res) => {
-//   res.status(200).render('base');
-// });
-
 app.get('/', (req, res) => {
   res.status(200).render('index', {
     title: 'Welcome to News Blog',
   });
 });
 
-app.get('/single', (req, res) => {
-  res.status(200).render('single', {
-    title: 'Donald Trump',
+//Post details
+app.get('/post', (req, res) => {
+  res.status(200).render('post', {
+    title: 'Post Title',
   });
 });
 
+//Authentication
 app.get('/auth', (req, res) => {
   res.status(200).render('auth', {
     title: 'Login or Register',
   });
 });
 
-app.get('/post', (req, res) => {
-  res.status(200).render('post', {
-    title: 'Post Title',
+//Categories
+app.get('/politics', (req, res) => {
+  res.status(200).render('politics', {
+    title: 'Politics',
+  });
+});
+app.get('/tech', (req, res) => {
+  res.status(200).render('tech', {
+    title: 'Technology',
+  });
+});
+app.get('/entertainment', (req, res) => {
+  res.status(200).render('entertainment', {
+    title: 'Entertainment',
+  });
+});
+app.get('/travel', (req, res) => {
+  res.status(200).render('travel', {
+    title: 'Travel',
+  });
+});
+app.get('/sports', (req, res) => {
+  res.status(200).render('sports', {
+    title: 'Sports',
   });
 });
 
