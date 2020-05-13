@@ -34,17 +34,32 @@ router.delete(
 
 router.get(
   '/',
-  // authController.protectRoute,
-  // authController.restrictRouteTo('admin'),
+  authController.protectRoute,
+  authController.restrictRouteTo('admin'),
   usersController.getAllUsers
 );
-
-router.post('/', usersController.createUser);
-
-router.get('/:id', authController.protectRoute, usersController.getUser);
-
-router.patch('/:id', authController.protectRoute, usersController.updateUser);
-
-router.delete('/:id', authController.protectRoute, usersController.deleteUser);
+router.post(
+  '/',
+  authController.restrictRouteTo('admin'),
+  usersController.createUser
+);
+router.get(
+  '/:id',
+  authController.protectRoute,
+  authController.restrictRouteTo('admin'),
+  usersController.getUser
+);
+router.patch(
+  '/:id',
+  authController.protectRoute,
+  authController.restrictRouteTo('admin'),
+  usersController.updateUser
+);
+router.delete(
+  '/:id',
+  authController.protectRoute,
+  authController.restrictRouteTo('admin'),
+  usersController.deleteUser
+);
 
 module.exports = router;
