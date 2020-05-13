@@ -61,8 +61,20 @@ app.use((req, res, next) => {
 });
 
 //Routes
+// app.get('/base', (req, res) => {
+//   res.status(200).render('base');
+// });
+
 app.get('/', (req, res) => {
-  res.status(200).render('base');
+  res.status(200).render('index', {
+    title: 'Welcome to News Blog',
+  });
+});
+
+app.get('/single', (req, res) => {
+  res.status(200).render('single', {
+    title: 'Donald Trump',
+  });
 });
 
 //API Routes
