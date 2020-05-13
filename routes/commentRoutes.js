@@ -13,6 +13,8 @@ router.post(
   commentsController.createComment
 );
 
+router.get('/:id', commentsController.getComment);
+
 router.patch(
   '/:id',
   authController.protectRoute,
