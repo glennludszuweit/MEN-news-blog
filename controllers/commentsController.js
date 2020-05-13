@@ -30,5 +30,7 @@ module.exports = {
     });
   }),
 
+  updateComment: factory.updateOne(Comment),
+
   deleteComment: factory.deleteOne(Comment),
 };

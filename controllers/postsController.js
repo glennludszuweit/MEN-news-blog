@@ -49,23 +49,7 @@ module.exports = {
     });
   }),
 
-  updatePost: CatchAsync(async (req, res, next) => {
-    const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
-    if (!post) {
-      return next(new AppError('Post not found.', 404));
-    }
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        post,
-      },
-    });
-  }),
+  updatePost: factory.updateOne(Post),
 
   deletePost: factory.deleteOne(Post),
 };

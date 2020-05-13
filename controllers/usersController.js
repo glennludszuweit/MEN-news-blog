@@ -67,13 +67,6 @@ module.exports = {
     });
   }),
 
-  updateUser: (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'Route not yet ready.',
-    });
-  },
-
   deleteMe: CatchAsync(async (req, res, next) => {
     await User.findByIdAndUpdate(req.user.id, {
       active: false,
@@ -84,6 +77,8 @@ module.exports = {
       data: null,
     });
   }),
+
+  updateUser: factory.updateOne(User),
 
   deleteUser: factory.deleteOne(User),
 };
