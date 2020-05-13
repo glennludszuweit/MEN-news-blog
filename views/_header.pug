@@ -1,0 +1,36 @@
+.site-mobile-menu
+    .site-mobile-menu-header
+        .site-mobile-menu-close.mt-3
+            span.icon-close2.js-menu-toggle
+    .site-mobile-menu-body
+header.site-navbar(role="banner")
+    .container-fluid
+        .row.align-items-center
+            .col-12.search-form-wrap.js-search-form
+                form(method="get" action="#")
+                    input#s.form-control(type="text" placeholder="Search...")
+                    button.search-btn(type="submit")
+                        span.icon-search
+            .col-4.site-logo
+                a.text-black.h2.mb-0(href="index.html")
+                    img.logo-img(src="images/newsblog.png" alt="logo" width="150")
+            .col-8.text-right
+                nav.site-navigation(role="navigation")
+                    ul.site-menu.js-clone-nav.mr-auto.d-none.d-lg-block.mb-0
+                        li
+                            a(href="category.html") Home
+                        li
+                            a(href="category.html") Politics
+                        li
+                            a(href="category.html") Tech
+                        li
+                            a(href="category.html") Entertainment
+                        li
+                            a(href="category.html") Travel
+                        li
+                            a(href="category.html") Sports
+                        li.d-none.d-lg-inline-block
+                            a.js-search-toggle(href="#")
+                                span.icon-search
+                a.site-menu-toggle.js-menu-toggle.text-black.d-inline-block.d-lg-none(href="#")
+                    span.icon-menu.h3
