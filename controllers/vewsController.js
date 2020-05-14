@@ -26,33 +26,73 @@ module.exports = {
     });
   },
 
-  polotics: (req, res) => {
+  polotics: CatchAsync(async (req, res) => {
+    //get DATA from collection
+    const posts = await Post.find({
+      category: 'Politics',
+    });
+
+    //add template
+    //render template
     res.status(200).render('politics', {
       title: 'Politics',
+      posts,
     });
-  },
+  }),
 
-  tech: (req, res) => {
+  tech: CatchAsync(async (req, res) => {
+    //get DATA from collection
+    const posts = await Post.find({
+      category: 'Technology',
+    });
+
+    //add template
+    //render template
     res.status(200).render('tech', {
       title: 'Technology',
+      posts,
     });
-  },
+  }),
 
-  entertainment: (req, res) => {
+  entertainment: CatchAsync(async (req, res) => {
+    //get DATA from collection
+    const posts = await Post.find({
+      category: 'Entertainment',
+    });
+
+    //add template
+    //render template
     res.status(200).render('entertainment', {
       title: 'Entertainment',
+      posts,
     });
-  },
+  }),
 
-  travel: (req, res) => {
+  travel: CatchAsync(async (req, res) => {
+    //get DATA from collection
+    const posts = await Post.find({
+      category: 'Travel',
+    });
+
+    //add template
+    //render template
     res.status(200).render('travel', {
       title: 'Travel',
+      posts,
     });
-  },
+  }),
 
-  sports: (req, res) => {
-    res.status(200).render('sports', {
-      title: 'Sports',
+  sports: CatchAsync(async (req, res) => {
+    //get DATA from collection
+    const posts = await Post.find({
+      category: 'Sport',
     });
-  },
+
+    //add template
+    //render template
+    res.status(200).render('sports', {
+      title: 'Sport',
+      posts,
+    });
+  }),
 };
