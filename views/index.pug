@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
     .site-section.bg-light
         .container
             .row.align-items-stretch.retro-layout-2
@@ -33,28 +34,26 @@ block content
                 .col-12
                     h2 Recent Posts
             .row
-                .col-lg-4.mb-4
-                    .entry2
-                        a(href="/post")
-                            img.img-fluid.rounded(src="images/img_1.jpg" alt="Image")
-                        .excerpt
-                            span.post-category.text-white.bg-secondary.mb-3 Politics
-                            h2
-                                a(href="/post") The AI magically removes moving objects from videos.
-                            .post-meta.align-items-center.text-left.clearfix
-                                figure.author-figure.mb-0.mr-3.float-left
-                                    img.img-fluid(src="images/person_1.jpg" alt="Image")
-                                span.d-inline-block.mt-1
-                                    | By 
-                                    a(href="#") Carrol Atkinson
-                                span &nbsp;-&nbsp; July 19, 2019
-                            p
-                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                | Quo sunt tempora dolor laudantium sed optio, explicabo ad
-                                | deleniti impedit facilis fugit recusandae! Illo, aliquid,
-                                | dicta beatae quia porro id est.
-                            p
-                                a(href="#") Read More
+                each post in posts
+                    .col-lg-4.mb-4
+                        .entry2
+                            a(href=`/posts/${post.slug}`)
+                                img.img-fluid.rounded(src="images/img_1.jpg" alt="Image")
+                            .excerpt
+                                span.post-category.text-white.bg-secondary= post.category
+                                | 
+                                h2
+                                    a(href=`/posts/${post.slug}`)= post.title
+                                .post-meta.align-items-center.text-left.clearfix.pb-3
+                                    //- figure.author-figure.mb-0.mr-3.float-left
+                                    //-     img.img-fluid(src="images/person_1.jpg" alt=`${post.title}`)
+                                    span.d-inline-block.mt-1
+                                        | By 
+                                        span(style="padding-right: 3px; color: #000")= post.author 
+                                    span= post.createdAt.toLocaleString('de-de', {day: 'numeric', month: 'long', year: 'numeric'})
+                                p= post.description
+                                p
+                                    a(href=`/posts/${post.slug}`) Read More
     
 
             .row.text-center.pt-5.border-top

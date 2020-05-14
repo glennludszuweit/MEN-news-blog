@@ -62,6 +62,7 @@ app.use((req, res, next) => {
 });
 
 //API Routes
+app.use('/', viewRouter);
 app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/users', userRouter);
