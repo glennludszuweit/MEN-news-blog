@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', viewsController.indexPage);
 
 //Post details
-router.get('/post', viewsController.postPage);
+router.get('/posts/:slug', viewsController.postPage);
 
 //Authentication
 router.get('/auth', viewsController.authPage);

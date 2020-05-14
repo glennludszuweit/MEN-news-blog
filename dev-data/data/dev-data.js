@@ -26,8 +26,8 @@ const comments = JSON.parse(
 // IMPORT DATA INTO DB
 const importData = async () => {
   try {
-    await Post.create(posts);
-    await User.create(users);
+    // await Post.create(posts);
+    // await User.create(users);
     await Comment.create(comments);
     console.log('Data successfully loaded!');
   } catch (err) {
@@ -39,8 +39,8 @@ const importData = async () => {
 // DELETE ALL DATA FROM DB
 const deleteData = async () => {
   try {
-    await Post.deleteMany();
-    await User.deleteMany();
+    // await Post.deleteMany();
+    // await User.deleteMany();
     await Comment.deleteMany();
     console.log('Data successfully deleted!');
   } catch (err) {

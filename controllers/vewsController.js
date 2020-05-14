@@ -4,21 +4,26 @@ const CatchAsync = require('../utils/CatchAsync');
 module.exports = {
   indexPage: CatchAsync(async (req, res) => {
     //get DATA from collection
-    const posts = await Post.find();
+    const posts = await Post.find().limit(9).sort({ createdAt: -1 });
 
     //add template
     //render template
     res.status(200).render('index', {
-      title: 'Welcome to News Blog',
+      title: 'News Blog',
       posts,
     });
   }),
 
-  postPage: (req, res) => {
-    res.status(200).render('post', {
-      title: 'Post Title',
+  postPage: CatchAsync(async (req, res) => {
+    const post = await Post.findOne({ slug: req.params.slug }).populate({
+      path: 'comments',
+      fields: 'comment user',
     });
-  },
+    res.status(200).render('post', {
+      title: `${post.category} | ${post.title}`,
+      post,
+    });
+  }),
 
   authPage: (req, res) => {
     res.status(200).render('auth', {
@@ -91,7 +96,7 @@ module.exports = {
     //add template
     //render template
     res.status(200).render('sports', {
-      title: 'Sport',
+      title: 'Sports',
       posts,
     });
   }),
