@@ -40,7 +40,16 @@ block content
                             a(href=`/posts/${post.slug}`)
                                 img.img-fluid.rounded(src="images/img_1.jpg" alt="Image")
                             .excerpt
-                                span.post-category.text-white.bg-secondary= post.category
+                                - if (post.category === 'Politics')
+                                    span.post-category.text-white.bg-secondary= post.category
+                                - if (post.category === 'Travel')
+                                    span.post-category.text-white.bg-danger= post.category
+                                - if (post.category === 'Sport')
+                                    span.post-category.text-white.bg-primary= post.category
+                                - if (post.category === 'Entertainment')
+                                    span.post-category.text-white.bg-warning= post.category
+                                - if (post.category === 'Technology')
+                                    span.post-category.text-white.bg-success= post.category
                                 | 
                                 h2
                                     a(href=`/posts/${post.slug}`)= post.title
@@ -56,20 +65,20 @@ block content
                                     a(href=`/posts/${post.slug}`) Read More
     
 
-            .row.text-center.pt-5.border-top
-                .col-md-12
-                    .custom-pagination
-                        span 1
-                        a(href="#") 2
-                        a(href="#") 3
-                        a(href="#") 4
-                        span ...
-                        a(href="#") 15
+            //- .row.text-center.pt-5.border-top
+            //-     .col-md-12
+            //-         .custom-pagination
+            //-             span 1
+            //-             a(href="#") 2
+            //-             a(href="#") 3
+            //-             a(href="#") 4
+            //-             span ...
+            //-             a(href="#") 15
     .site-section.bg-light
         .container
             .row.mb-5
                 .col-12
-                    h2 More Related Posts
+                    h2 More Posts
             .row.align-items-stretch.retro-layout
                 .col-md-5.order-md-2
                     a.hentry.img-1.h-100.gradient(href="single.html" style="background-image: url('images/img_4.jpg');")
@@ -78,19 +87,30 @@ block content
                             h2 The 20 Biggest Fintech Companies In America 2019
                             span February 12, 2019
                 .col-md-7
-                    a.hentry.img-2.v-height.mb30.gradient(href="single.html" style="background-image: url('images/img_1.jpg');")
-                        span.post-category.text-white.bg-success Nature
-                        .text.text-sm
-                            h2 The 20 Biggest Fintech Companies In America 2019
-                            span February 12, 2019
-                    .two-col.d-block.d-md-flex
+                    //- a.hentry.img-2.v-height.mb30.gradient(href="single.html" style="background-image: url('images/img_1.jpg');")
+                    //-     span.post-category.text-white.bg-success Nature
+                    //-     .text.text-sm
+                    //-         h2 The 20 Biggest Fintech Companies In America 2019
+                    //-         span February 12, 2019
+                    .two-col.d-block.d-md-flex.mb-4
                         a.hentry.v-height.img-2.gradient(href="single.html" style="background-image: url('images/img_2.jpg');")
                             span.post-category.text-white.bg-primary Sports
                             .text.text-sm
                                 h2 The 20 Biggest Fintech Companies In America 2019
                                 span February 12, 2019
                         a.hentry.v-height.img-2.ml-auto.gradient(href="single.html" style="background-image: url('images/img_3.jpg');")
-                            span.post-category.text-white.bg-warning Lifestyle
+                            span.post-category.text-white.bg-secondary Politics
+                            .text.text-sm
+                                h2 The 20 Biggest Fintech Companies In America 2019
+                                span February 12, 2019
+                    .two-col.d-block.d-md-flex
+                        a.hentry.v-height.img-2.gradient(href="single.html" style="background-image: url('images/img_2.jpg');")
+                            span.post-category.text-white.bg-success Technology
+                            .text.text-sm
+                                h2 The 20 Biggest Fintech Companies In America 2019
+                                span February 12, 2019
+                        a.hentry.v-height.img-2.ml-auto.gradient(href="single.html" style="background-image: url('images/img_3.jpg');")
+                            span.post-category.text-white.bg-warning Entertainment
                             .text.text-sm
                                 h2 The 20 Biggest Fintech Companies In America 2019
                                 span February 12, 2019
