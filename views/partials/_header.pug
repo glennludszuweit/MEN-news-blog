@@ -29,5 +29,20 @@ header.site-navbar(role="banner")
                             a(href="/travel") Travel
                         li
                             a(href="/sports") Sports
-                        li
-                            a(href="/auth") Login/Signup
+                        if user
+                            li
+                                a.btn.border-primary.px-4.dropdown-toggle(href="#" data-toggle="dropdown" style="border-radius: 30px; padding: 10px 0px; color: #000; text-decoration: none !important;")
+                                    
+                                    img.rounded-circle.border-primary(width="25" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="avatar image")
+                                    span.pl-2 Account
+                                    span.caret
+                                .dropdown-menu.dropdown-menu-right
+                                    button.dropdown-item(href="#" style="cursor: pointer") Comments
+                                    button.dropdown-item(href="#" style="cursor: pointer") Settings
+                                    button.dropdown-item(href="#" style="cursor: pointer") Logout
+                        else
+                            li
+                                a.btn.border-primary.px-4.my-2(href="/auth" style="border-radius: 30px;") Login/Signup
+
+                a.site-menu-toggle.js-menu-toggle.text-black.d-inline-block.d-lg-none(href="#")
+                    span.icon-menu.h3
