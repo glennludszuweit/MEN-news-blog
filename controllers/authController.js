@@ -73,7 +73,10 @@ module.exports = {
       req.headers.authorization.startsWith('Bearer')
     ) {
       token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies.jwt) {
+      token = req.cookies.jwt;
     }
+
     if (!token) {
       return next(new AppError('Access unauthorized, please login.', 401));
     }
@@ -81,9 +84,11 @@ module.exports = {
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     //Check if User still authorized
     const currentUser = await User.findById(decoded.id);
+
     if (!currentUser) {
       return next(new AppError('This user does not exist.', 401));
     }
+
     //Check if user changed password/token
     if (currentUser.afterChangedPassword(decoded.iat)) {
       return next(new AppError('Password changed. Please try again.', 401));

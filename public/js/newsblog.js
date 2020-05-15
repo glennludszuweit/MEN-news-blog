@@ -58,3 +58,5 @@ document.querySelector('.form-signup').addEventListener('submit', (e) => {
   const confirmPassword = document.getElementById('confirmPassword').value;
   register(signupName, signupEmail, signupPassword, confirmPassword);
 });
+
+/////DASHBOARD/////
