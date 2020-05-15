@@ -714,6 +714,16 @@ h5,
   color: #666666;
 }
 
+/* #cardImg {
+  height: 150px !important;
+} */
+
+#cardImg {
+  width: 100%;
+  height: 225px;
+  object-fit: fill;
+}
+
 .site-cover {
   background-size: cover;
   background-position: top center;

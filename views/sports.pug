@@ -19,7 +19,7 @@ block content
                     .col-lg-4.mb-4
                         .entry2
                             a(href=`/posts/${post.slug}`)
-                                img.img-fluid.rounded(src="images/img_1.jpg" alt="Image")
+                                img#cardImg.img-fluid.rounded(src=`/images/${post.coverImage}` alt=`${post.title}`)
                             .excerpt
                                 h2
                                     a(href=`/posts/${post.slug}`)= post.title

@@ -6,6 +6,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const errorController = require('./controllers/errorController');
 
@@ -53,10 +54,12 @@ app.use(
 
 //Body parser
 app.use(express.json({}));
+app.use(cookieParser());
 
 //Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
+  console.log(req.cookies);
   // console.log(req.headers);
   next();
 });
