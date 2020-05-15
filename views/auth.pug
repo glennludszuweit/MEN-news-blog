@@ -14,11 +14,11 @@ block content
                 | Login
               form.form-signin
                 .form-label-group
-                  input#inputEmail.form-control(type="email" placeholder="Email address" required="")
-                  label(for="inputEmail") Email address
+                  input#signinEmail.form-control(type="email" placeholder="Email address" required autofocus)
+                  label(for="signinEmail") Email address
                 .form-label-group
-                  input#inputPassword.form-control(type="password" placeholder="Password" required="")
-                  label(for="inputPassword") Password
+                  input#signinPassword.form-control(type="password" placeholder="Password" required)
+                  label(for="signinPassword") Password
                 button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type="submit")
                   | Login
               .p-3
@@ -26,18 +26,19 @@ block content
               // SignUp
               h5.card-title.text-center.font-weight-bold
                 | Register
-              form.form-signin
+              form.form-signup
                 .form-label-group
-                  input#inputUserame.form-control(type="text" placeholder="Username" required="" autofocus="")
-                  label(for="inputUserame") Username
+                  input#signupName.form-control(type="text" placeholder="Name" required)
+                  label(for="signupName") Name
                 .form-label-group
-                  input#inputEmail.form-control(type="email" placeholder="Email address" required="")
-                  label(for="inputEmail") Email address
+                  input#signupEmail.form-control(type="email" placeholder="Email address" required)
+                  label(for="signupEmail") Email address
                 .form-label-group
-                  input#inputPassword.form-control(type="password" placeholder="Password" required="")
-                  label(for="inputPassword") Password
+                  input#signupPassword.form-control(type="password" placeholder="Password" required)
+                  label(for="signupPassword") Password
                 .form-label-group
-                  input#inputConfirmPassword.form-control(type="password" placeholder="Password" required="")
-                  label(for="inputConfirmPassword") Confirm password
+                  input#confirmPassword.form-control(type="password" placeholder="Password" required)
+                  label(for="confirmPassword") Confirm password
                 button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type="submit")
                   | Register
+              .p-3    

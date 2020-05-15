@@ -1814,11 +1814,20 @@ h5,
   padding: 2rem;
 }
 
-.form-signin {
+.form-signin .form-signup {
   width: 100%;
 }
 
 .form-signin .btn {
+  font-size: 80%;
+  border-radius: 3px;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.form-signup .btn {
   font-size: 80%;
   border-radius: 3px;
   letter-spacing: 0.1rem;

@@ -2,7 +2,7 @@ const Post = require('../models/Post');
 const CatchAsync = require('../utils/CatchAsync');
 
 module.exports = {
-  indexPage: CatchAsync(async (req, res) => {
+  indexPage: CatchAsync(async (req, res, next) => {
     //get DATA from collection
     const posts = await Post.find().limit(9).sort({ createdAt: -1 });
 
@@ -14,7 +14,7 @@ module.exports = {
     });
   }),
 
-  postPage: CatchAsync(async (req, res) => {
+  postPage: CatchAsync(async (req, res, next) => {
     const post = await Post.findOne({ slug: req.params.slug }).populate({
       path: 'comments',
       fields: 'comment user',
