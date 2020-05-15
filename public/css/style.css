@@ -724,9 +724,16 @@ h5,
   object-fit: fill;
 }
 
+#post-images {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
 .site-cover {
   background-size: cover;
-  background-position: top center;
+  background-repeat: no-repeat;
+  background-position: center;
   position: relative;
 }
 .site-cover.overlay:before {
