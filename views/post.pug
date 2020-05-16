@@ -49,10 +49,17 @@ block content
                   p= comment.comment
 
           // END comment-list
-          .comment-form-wrap.pt-5
-            h3.mb-5 Leave a comment
-            form.p-5.bg-light(action="#")
-              .form-group
-                textarea#message.form-control(name="" cols="30" rows="10" placeholder="Login to add a comment...")
-              .form-group
-                input.btn.btn-primary(type="submit" value="Post Comment")
+          if user
+            .comment-form-wrap.pt-5
+              h3.mb-5 Leave a comment
+              form(action="#")
+                .form-group
+                  textarea#message.form-control(name="" cols="30" rows="10" placeholder="Login to add a comment...")
+                .form-group
+                  input.btn.btn-primary(type="submit" value="Post Comment")
+
+          else 
+            .comment-form-wrap.pt-5
+              h5.mb-5 
+                a.btn.btn-outline-primary.rounded.mr-3(href="/auth") Login 
+                span to write comments
