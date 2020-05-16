@@ -1,4 +1,16 @@
 /* eslint-disable */
+/////ALERTS/////
+const hideAlert = () => {
+  const el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+};
+
+const showAlert = (type, msg) => {
+  hideAlert();
+  const markup = `<div class="alert alert-${type}">${msg}</div>`;
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+  window.setTimeout(hideAlert, 5000);
+};
 
 /////LOGIN/////
 const login = async (signinEmail, signinPassword) => {
@@ -12,13 +24,11 @@ const login = async (signinEmail, signinPassword) => {
       },
     });
     if (res.data.status === 'success') {
-      window.setTimeout(() => {
-        // alert('Logged in successfully');
-        location.assign('/');
-      }, 1000);
+      location.assign('/');
+      showAlert('success', 'Logged in successfully!');
     }
   } catch (error) {
-    alert(error.response.data.message);
+    showAlert('danger', error.response.data.message);
   }
 };
 
@@ -66,5 +76,3 @@ document.querySelector('.form-signup').addEventListener('submit', (e) => {
   const confirmPassword = document.getElementById('confirmPassword').value;
   register(signupName, signupEmail, signupPassword, confirmPassword);
 });
-
-/////ALERTS/////
