@@ -12,33 +12,6 @@ const showAlert = (type, msg) => {
   window.setTimeout(hideAlert, 5000);
 };
 
-/////LOGIN/////
-const login = async (signinEmail, signinPassword) => {
-  try {
-    const res = await axios({
-      method: 'POST',
-      url: 'http://localhost:4000/api/v1/users/login',
-      data: {
-        email: signinEmail,
-        password: signinPassword,
-      },
-    });
-    if (res.data.status === 'success') {
-      location.assign('/');
-      showAlert('success', 'Logged in successfully!');
-    }
-  } catch (error) {
-    showAlert('danger', error.response.data.message);
-  }
-};
-
-document.querySelector('.form-signin').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const signinEmail = document.getElementById('signinEmail').value;
-  const signinPassword = document.getElementById('signinPassword').value;
-  login(signinEmail, signinPassword);
-});
-
 /////REGISTER/////
 const register = async (
   signupName,
@@ -58,13 +31,13 @@ const register = async (
       },
     });
     if (res.data.status === 'success') {
+      showAlert('success', 'Registered in successfully!');
       window.setTimeout(() => {
-        // alert('Logged in successfully');
         location.assign('/');
-      }, 1000);
+      }, 1500);
     }
   } catch (error) {
-    alert(error.response.data.message);
+    showAlert('danger', error.response.data.message);
   }
 };
 
@@ -76,3 +49,47 @@ document.querySelector('.form-signup').addEventListener('submit', (e) => {
   const confirmPassword = document.getElementById('confirmPassword').value;
   register(signupName, signupEmail, signupPassword, confirmPassword);
 });
+
+/////LOGIN/////
+const login = async (signinEmail, signinPassword) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'http://localhost:4000/api/v1/users/login',
+      data: {
+        email: signinEmail,
+        password: signinPassword,
+      },
+    });
+    if (res.data.status === 'success') {
+      showAlert('success', 'Logged in successfully!');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
+  } catch (error) {
+    showAlert('danger', error.response.data.message);
+  }
+};
+
+document.querySelector('.form-signin').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const signinEmail = document.getElementById('signinEmail').value;
+  const signinPassword = document.getElementById('signinPassword').value;
+  login(signinEmail, signinPassword);
+});
+
+/////LOGOUT/////
+// const logout = async () => {
+//   try {
+//     const res = await axios({
+//       method: 'GET',
+//       url: 'http://localhost:4000/api/v1/users/logout',
+//     });
+//     if ((res.data.status = 'success')) location.reload(true);
+//   } catch (error) {
+//     showAlert('danger', 'Error logging out!');
+//   }
+// };
+
+// document.querySelector('#logout').addEventListener('click', logout);
