@@ -92,4 +92,6 @@ document.querySelector('.form-signin').addEventListener('submit', (e) => {
 //   }
 // };
 
-// document.querySelector('#logout').addEventListener('click', logout);
+// document
+//   .querySelector('.dropdown-menu #logout')
+//   .addEventListener('click', logout);

@@ -71,9 +71,6 @@ module.exports = {
       httpOnly: true,
     });
     res.redirect('/');
-    // res.status(200).json({
-    //   status: 'success',
-    // });
   },
 
   protectRoute: CatchAsync(async (req, res, next) => {
