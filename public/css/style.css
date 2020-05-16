@@ -269,6 +269,9 @@ h5,
   .display-3 {
     font-size: 3rem;
   }
+  .dashdrop {
+    width: 100%;
+  }
 }
 
 .play-single-big {
@@ -719,7 +722,7 @@ h5,
 } */
 
 #cardImg {
-  width: 100%;
+  width: 400px;
   height: 225px;
   object-fit: fill;
 }

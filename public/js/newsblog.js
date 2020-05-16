@@ -2,7 +2,6 @@
 
 /////LOGIN/////
 const login = async (signinEmail, signinPassword) => {
-  console.log(signinEmail, signinPassword);
   try {
     const res = await axios({
       method: 'POST',
@@ -12,9 +11,14 @@ const login = async (signinEmail, signinPassword) => {
         password: signinPassword,
       },
     });
-    console.log(res);
+    if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        // alert('Logged in successfully');
+        location.assign('/');
+      }, 1000);
+    }
   } catch (error) {
-    console.log(error.response.data);
+    alert(error.response.data.message);
   }
 };
 
@@ -32,7 +36,6 @@ const register = async (
   signupPassword,
   confirmPassword
 ) => {
-  console.log(signinEmail, signinPassword);
   try {
     const res = await axios({
       method: 'POST',
@@ -44,9 +47,14 @@ const register = async (
         confirmPassword: confirmPassword,
       },
     });
-    console.log(res);
+    if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        // alert('Logged in successfully');
+        location.assign('/');
+      }, 1000);
+    }
   } catch (error) {
-    console.log(error.response.data);
+    alert(error.response.data.message);
   }
 };
 
@@ -59,4 +67,4 @@ document.querySelector('.form-signup').addEventListener('submit', (e) => {
   register(signupName, signupEmail, signupPassword, confirmPassword);
 });
 
-/////DASHBOARD/////
+/////ALERTS/////

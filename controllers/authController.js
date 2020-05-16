@@ -115,7 +115,7 @@ module.exports = {
       }
       // THERE IS A LOGGED IN USER
       res.locals.user = currentUser;
-      next();
+      return next();
     }
     next();
   }),

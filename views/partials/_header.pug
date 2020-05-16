@@ -33,10 +33,10 @@ header.site-navbar(role="banner")
                             li
                                 a.btn.border-primary.px-4.dropdown-toggle(href="#" data-toggle="dropdown" style="border-radius: 30px; padding: 10px 0px; color: #000; text-decoration: none !important;")
                                     
-                                    img.rounded-circle.border-primary(width="25" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="avatar image")
-                                    span.pl-2 Account
+                                    img.rounded-circle.border-primary(width="25" height="25" src=`/images/${user.profileImg}` alt=`Photo of ${user.name}`)
+                                    span.pl-2= user.name.split(' ')[0]
                                     span.caret
-                                .dropdown-menu.dropdown-menu-right
+                                .dropdown-menu.dropdown-menu-right.dashdrop
                                     button.dropdown-item(href="#" style="cursor: pointer") Comments
                                     button.dropdown-item(href="#" style="cursor: pointer") Settings
                                     button.dropdown-item(href="#" style="cursor: pointer") Logout

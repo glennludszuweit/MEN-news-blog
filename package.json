@@ -8,6 +8,8 @@
     "start:prod": "NODE_ENV=production nodemon server.js",
     "devdata:import": "node dev-data/data/dev-data.js --import",
     "devdata:delete": "node dev-data/data/dev-data.js --delete",
+    "watch": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build": "parcel watch ./public/newsblog.js --out-dir ./public/js --out-file bundle.js",
     "debug": "ndb server.js"
   },
   "repository": {
@@ -49,6 +51,7 @@
     "eslint-plugin-react": "^7.19.0",
     "ndb": "^1.1.5",
     "nodemon": "^2.0.3",
+    "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5"
   }
 }
