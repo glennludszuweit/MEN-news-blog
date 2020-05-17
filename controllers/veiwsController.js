@@ -104,4 +104,11 @@ module.exports = {
       posts,
     });
   }),
+
+  contact: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('contact', {
+      title: 'Contact Us',
+    });
+  }),
 };

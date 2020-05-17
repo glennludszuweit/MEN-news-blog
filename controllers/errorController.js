@@ -80,7 +80,7 @@ module.exports = {
     } else if (process.env.NODE_ENV === 'production') {
       // eslint-disable-next-line node/no-unsupported-features/es-syntax
       let err = { ...error };
-
+      err.message = error.message;
       if (err.name === 'CastError') err = handleCastErrorDB(err);
       if (err.code === 11000) err = handleDuplicateFieldDB(err);
       if (err.name === 'ValidationError') err = handleValidationErrorDB(err);

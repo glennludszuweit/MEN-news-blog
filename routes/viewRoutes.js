@@ -5,6 +5,7 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.get('/logout', authController.logout);
+router.get('/contact', viewsController.contact);
 
 router.use(authController.isLoggedIn);
 
