@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/logout', authController.logout);
 router.get('/contact', viewsController.contact);
+router.get('/about', viewsController.about);
 
 router.use(authController.isLoggedIn);
 

@@ -111,4 +111,11 @@ module.exports = {
       title: 'Contact Us',
     });
   }),
+
+  about: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('about', {
+      title: 'About Us',
+    });
+  }),
 };
