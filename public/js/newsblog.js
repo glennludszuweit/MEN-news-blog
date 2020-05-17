@@ -98,9 +98,6 @@ const updateUserData = async (updateUserName, updateUserEmail) => {
     });
     if (res.data.status === 'success') {
       showAlert('success', 'Credentials updated!');
-      // window.setTimeout(() => {
-      //   location.assign('/');
-      // }, 1500);
     }
   } catch (error) {
     console.log(error);
@@ -115,5 +112,37 @@ if (updateUserDataForm) {
     const updateUserName = document.getElementById('updateUserName').value;
     const updateUserEmail = document.getElementById('updateUserEmail').value;
     updateUserData(updateUserName, updateUserEmail);
+  });
+}
+
+/////UPDATE USER PASSWORD/////
+const updateUserPassword = async (currentPass, newPass, confirmNewPass) => {
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url: 'http://localhost:4000/api/v1/users/updateMyPassword',
+      data: {
+        currentPassword: currentPass,
+        password: newPass,
+        confirmPassword: confirmNewPass,
+      },
+    });
+    if (res.data.status === 'success') {
+      showAlert('success', 'Password updated!');
+    }
+  } catch (error) {
+    console.log(error);
+    showAlert('danger', error.response.data.message);
+  }
+};
+
+const updateUserPasswordForm = document.querySelector('.update-user-password');
+if (updateUserPasswordForm) {
+  updateUserPasswordForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const currentPass = document.getElementById('currentPass').value;
+    const newPass = document.getElementById('newPass').value;
+    const confirmNewPass = document.getElementById('confirmNewPass').value;
+    updateUserPassword(currentPass, newPass, confirmNewPass);
   });
 }
