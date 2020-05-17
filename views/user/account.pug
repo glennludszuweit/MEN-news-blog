@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+
+    .site-section.bg-light
+        .container
+            .account-profile
+                .row
+                    .col-md-3.mr-auto.order-md-1.border-right
+                        h3.text-center.pb-3 Glenn
+                        ul.list-group.list-group-flush.pb-3
+                            li.list-group-item.bg-light.active.text-black Settings
+                            li.list-group-item.bg-light Posts
+                            li.list-group-item.bg-light Comments
+
+                        h5.text-center.pb-2 Admin
+                        ul.list-group.list-group-flush
+                            li.list-group-item.bg-light All Users
+                            li.list-group-item.bg-light All Posts
+                            li.list-group-item.bg-light All Comments
+                            hr.pb-3
+
+                    .col-md-9.order-md-2
+                        .d-flex.justify-content-center
+                            img.img-fluid.rounded-circle.mb-4(src="images/person_1.jpg" alt="Image" width="250")
+
+                        .row
+                            .col-md-1
+                            .col-md-10
+                                form.p-5
+                                    .row.form-group
+                                        .col-md-6.mb-3.mb-md-0
+                                            label.text-black(for="name") Name
+                                            input#name.form-control(type="text" value="Kate Hampton")
+                                        .col-md-6
+                                            label.text-black(for="email") Email
+                                            input#email.form-control(type="email" value="email@email.com")
+                                    .d-flex.justify-content-end
+                                        input#update.btn.btn-primary.py-2.px-4(type="submit" value="Update")
+                            .col-md-1
+                        hr

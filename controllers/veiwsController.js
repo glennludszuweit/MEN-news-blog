@@ -118,4 +118,12 @@ module.exports = {
       title: 'About Us',
     });
   }),
+
+  //USERS
+  account: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('user/account', {
+      title: 'Account',
+    });
+  }),
 };
