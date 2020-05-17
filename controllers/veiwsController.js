@@ -1,5 +1,6 @@
 const Post = require('../models/Post');
 const CatchAsync = require('../utils/CatchAsync');
+const AppError = require('../utils/AppError');
 
 module.exports = {
   indexPage: CatchAsync(async (req, res, next) => {
@@ -19,6 +20,9 @@ module.exports = {
       path: 'comments',
       fields: 'comment user',
     });
+    if (!post) {
+      return next(new AppError('Post not found!', 404));
+    }
     res.status(200).render('post', {
       title: `${post.category} | ${post.title}`,
       post,

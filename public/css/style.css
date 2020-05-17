@@ -1928,4 +1928,22 @@ h5,
   background-color: #3b5998;
 }
 
-/* DASHBOARD */
+/* ERROR page */
+.error-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.error-actions {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.error-actions .btn {
+  margin-right: 10px;
+}
+
+.error-container {
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -23,30 +23,49 @@ const handleJsonWebTokenError = () =>
 const handleTokenExpiredError = () =>
   new AppError('Token is expired. Please try again.', 401);
 
-const errorDev = (error, res) => {
-  res.status(error.statusCode).json({
-    status: error.status,
-    error: error,
-    message: error.message,
-    stack: error.stack,
-  });
-};
-
-const errorProd = (error, res) => {
-  //Operational error for client
-  if (error.isOperational) {
+const errorDev = (error, req, res) => {
+  //api
+  if (req.originalUrl.startsWith('/api')) {
     res.status(error.statusCode).json({
       status: error.status,
+      error: error,
       message: error.message,
+      stack: error.stack,
     });
-    //Programming error not for client
+    //rendered page
   } else {
-    //log error
     console.error('ERROR', error);
-    //client generic message
-    res.status(500).json({
-      status: 'error',
-      message: 'Something went wrong!',
+    res.status(error.statusCode).render('error', {
+      title: 'Something went wrong!',
+      code: error.statusCode,
+      msg: error.message,
+    });
+  }
+};
+
+const errorProd = (error, req, res) => {
+  if (req.originalUrl.startsWith('/api')) {
+    //Operational error for client
+    if (error.isOperational) {
+      res.status(error.statusCode).json({
+        status: error.status,
+        message: error.message,
+      });
+      //Programming error not for client
+    } else {
+      //log error
+      console.error('ERROR', error);
+      //client generic message
+      res.status(500).json({
+        status: 'error',
+        message: 'Something went wrong!',
+      });
+    }
+  } else {
+    res.status(error.statusCode).render('error', {
+      title: 'Something went wrong!',
+      code: error.statusCode,
+      msg: error.message,
     });
   }
 };
@@ -57,7 +76,7 @@ module.exports = {
     error.status = error.status || 'error';
 
     if (process.env.NODE_ENV === 'development') {
-      errorDev(error, res);
+      errorDev(error, req, res);
     } else if (process.env.NODE_ENV === 'production') {
       // eslint-disable-next-line node/no-unsupported-features/es-syntax
       let err = { ...error };
@@ -68,7 +87,7 @@ module.exports = {
       if (err.name === 'JsonWebTokenError') err = handleJsonWebTokenError(err);
       if (err.name === 'TokenExpiredError') err = handleTokenExpiredError(err);
 
-      errorProd(err, res);
+      errorProd(err, req, res);
     }
   },
 
