@@ -53,7 +53,7 @@ router.get(
 router.patch(
   '/:id',
   authController.protectRoute,
-  authController.restrictRouteTo('admin'),
+  // authController.restrictRouteTo('admin'),
   usersController.updateUser
 );
 router.delete(

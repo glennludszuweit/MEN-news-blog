@@ -41,14 +41,17 @@ const register = async (
   }
 };
 
-document.querySelector('.form-signup').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const signupName = document.getElementById('signupName').value;
-  const signupEmail = document.getElementById('signupEmail').value;
-  const signupPassword = document.getElementById('signupPassword').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  register(signupName, signupEmail, signupPassword, confirmPassword);
-});
+const registerForm = document.querySelector('.form-signup');
+if (registerForm) {
+  registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const signupName = document.getElementById('signupName').value;
+    const signupEmail = document.getElementById('signupEmail').value;
+    const signupPassword = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    register(signupName, signupEmail, signupPassword, confirmPassword);
+  });
+}
 
 /////LOGIN/////
 const login = async (signinEmail, signinPassword) => {
@@ -72,26 +75,45 @@ const login = async (signinEmail, signinPassword) => {
   }
 };
 
-document.querySelector('.form-signin').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const signinEmail = document.getElementById('signinEmail').value;
-  const signinPassword = document.getElementById('signinPassword').value;
-  login(signinEmail, signinPassword);
-});
+const loginForm = document.querySelector('.form-signin');
+if (loginForm) {
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const signinEmail = document.getElementById('signinEmail').value;
+    const signinPassword = document.getElementById('signinPassword').value;
+    login(signinEmail, signinPassword);
+  });
+}
 
-/////LOGOUT/////
-// const logout = async () => {
-//   try {
-//     const res = await axios({
-//       method: 'GET',
-//       url: 'http://localhost:4000/api/v1/users/logout',
-//     });
-//     if ((res.data.status = 'success')) location.reload(true);
-//   } catch (error) {
-//     showAlert('danger', 'Error logging out!');
-//   }
-// };
+/////UPDATE USER DATA/////
+const updateUserData = async (updateUserName, updateUserEmail) => {
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url: 'http://localhost:4000/api/v1/users/updateProfile',
+      data: {
+        name: updateUserName,
+        email: updateUserEmail,
+      },
+    });
+    if (res.data.status === 'success') {
+      showAlert('success', 'Credentials updated!');
+      // window.setTimeout(() => {
+      //   location.assign('/');
+      // }, 1500);
+    }
+  } catch (error) {
+    console.log(error);
+    showAlert('danger', error.response.data.message);
+  }
+};
 
-// document
-//   .querySelector('.dropdown-menu #logout')
-//   .addEventListener('click', logout);
+const updateUserDataForm = document.querySelector('.update-user-data');
+if (updateUserDataForm) {
+  updateUserDataForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const updateUserName = document.getElementById('updateUserName').value;
+    const updateUserEmail = document.getElementById('updateUserEmail').value;
+    updateUserData(updateUserName, updateUserEmail);
+  });
+}

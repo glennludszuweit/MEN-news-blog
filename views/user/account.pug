@@ -7,7 +7,7 @@ block content
             .account-profile
                 .row
                     .col-md-3.mr-auto.order-md-1.border-right
-                        h3.text-center.pb-3 Glenn
+                        h3.text-center.pb-3= user.name
                         ul.list-group.list-group-flush.pb-3
                             li.list-group-item.bg-light.active
                                 a.text-dark(href="/account") Settings
@@ -37,19 +37,34 @@ block content
                         .row
                             .col-md-2
                             .col-md-8
-                                form.px-5
-                                    img.img-fluid.profile-image(src=`images/${user.profileImg}` alt=`Photo of ${user.name}`)
-                                    p.d-flex.justify-content-end
-                                        a.border-bottom(href="#") Change photo
+                                form.update-user-data.px-5.pb-3
+                                    if user.profileImg
+                                        img.img-fluid.profile-image(src=`images/${user.profileImg}` alt=`Photo of ${user.name}`)
+                                    else
+                                        h5 Upload profile Photo 
                                     
-                                    label.text-black.mt-3(for="name") Name
-                                    input#name.form-control.rounded(type="text" value=`${user.name}`)
+                                    //- script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+                                    //- .input-group.mt-1
+                                    //-     .custom-file
+                                    //-         input#updateUserPhoto.custom-file-input(type="file")
+                                    //-         label.custom-file-label(for="updateUserPhoto") Change/Upload photo ...
+                                    //- script.
+                                    //-     $('#updateUserPhoto').on('change',function(){
+                                    //-     //get the file name
+                                    //-     var fileName = $(this).val();
+                                    //-     //replace the "Choose a file" label
+                                    //-     $(this).next('.custom-file-label').html(fileName);
+                                        })
+                                        
+                                    
+                                    label.text-black.mt-3(for="updateUserName") Name
+                                    input#updateUserName.form-control.rounded(type="text" value=`${user.name}`)
                                 
-                                    label.text-black.mt-3(for="email") Email
-                                    input#email.form-control.rounded(type="email" value=`${user.email}`)
+                                    label.text-black.mt-3(for="updateUserEmail") Email
+                                    input#updateUserEmail.form-control.rounded(type="email" value=`${user.email}`)
 
                                     .d-flex.justify-content-end.mt-3
-                                        input#update.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")
+                                        input.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")
                             .col-md-2
                         hr
 
@@ -62,16 +77,16 @@ block content
                         .row
                             .col-md-2
                             .col-md-8
-                                form.px-5
+                                form.px-5.pb-3
                                     
                                     label.text-black.mt-3(for="currentPass") Current Password
-                                    input#currentPass.form-control.rounded(type="password" placeholder="**********")
+                                    input#currentPass.form-control.rounded(type="password" placeholder="••••••••••••")
                                 
                                     label.text-black.mt-3(for="newPass") New Password
-                                    input#newPass.form-control.rounded(type="password" placeholder="**********")
+                                    input#newPass.form-control.rounded(type="password" placeholder="••••••••••••")
 
                                     label.text-black.mt-3(for="confirmNewPass") Confirm New Password
-                                    input#confirmNewPass.form-control.rounded(type="password" placeholder="**********")
+                                    input#confirmNewPass.form-control.rounded(type="password" placeholder="••••••••••••")
 
                                     .d-flex.justify-content-end.mt-3
                                         input#update.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")

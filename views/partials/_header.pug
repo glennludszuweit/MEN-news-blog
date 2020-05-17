@@ -28,7 +28,7 @@ header.site-navbar(role="banner")
                             li
                                 a.btn.border-primary.px-4.dropdown-toggle.dropdown-btn(href="#" data-toggle="dropdown" style="border-radius: 30px; padding: 10px 0px; color: #000; text-decoration: none !important;")
                                     if user.profileImg
-                                        img.rounded-circle.border-primary(width="25" height="25" src=`/images/${user.profileImg}` alt=`Photo of ${user.name}`)
+                                        img.rounded-circle.border-primary#nav-img(src=`/images/${user.profileImg}` alt=`Photo of ${user.name}`)
                                     span.pl-2= user.name.split(' ')[0]
                                     span.caret
                                 .dropdown-menu.dropdown-menu-right.dashdrop
