@@ -4,29 +4,30 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.use(authController.isLoggedIn);
-
-router.get('/logout', authController.logout);
-router.get('/contact', viewsController.contact);
-router.get('/about', viewsController.about);
-
 //USERS
-router.get('/account', viewsController.account);
+router.get('/account', authController.protectRoute, viewsController.account);
 
 //Home
-router.get('/', viewsController.indexPage);
+router.get('/', authController.isLoggedIn, viewsController.indexPage);
+router.get('/logout', authController.isLoggedIn, authController.logout);
+router.get('/contact', authController.isLoggedIn, viewsController.contact);
+router.get('/about', authController.isLoggedIn, viewsController.about);
 
 //Post details
-router.get('/posts/:slug', viewsController.postPage);
+router.get('/posts/:slug', authController.isLoggedIn, viewsController.postPage);
 
 //Authentication
-router.get('/auth', viewsController.authPage);
+router.get('/auth', authController.isLoggedIn, viewsController.authPage);
 
 //Categories
-router.get('/politics', viewsController.polotics);
-router.get('/tech', viewsController.tech);
-router.get('/entertainment', viewsController.entertainment);
-router.get('/travel', viewsController.travel);
-router.get('/sports', viewsController.sports);
+router.get('/politics', authController.isLoggedIn, viewsController.polotics);
+router.get('/tech', authController.isLoggedIn, viewsController.tech);
+router.get(
+  '/entertainment',
+  authController.isLoggedIn,
+  viewsController.entertainment
+);
+router.get('/travel', authController.isLoggedIn, viewsController.travel);
+router.get('/sports', authController.isLoggedIn, viewsController.sports);
 
 module.exports = router;

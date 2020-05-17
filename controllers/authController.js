@@ -102,6 +102,7 @@ module.exports = {
       return next(new AppError('Password changed. Please try again.', 401));
     }
     req.user = currentUser;
+    res.locals.user = currentUser;
     next();
   }),
 

@@ -9,33 +9,70 @@ block content
                     .col-md-3.mr-auto.order-md-1.border-right
                         h3.text-center.pb-3 Glenn
                         ul.list-group.list-group-flush.pb-3
-                            li.list-group-item.bg-light.active.text-black Settings
-                            li.list-group-item.bg-light Posts
-                            li.list-group-item.bg-light Comments
+                            li.list-group-item.bg-light.active
+                                a.text-dark(href="/account") Settings
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="#") Posts
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="#") Comments
 
-                        h5.text-center.pb-2 Admin
-                        ul.list-group.list-group-flush
-                            li.list-group-item.bg-light All Users
-                            li.list-group-item.bg-light All Posts
-                            li.list-group-item.bg-light All Comments
-                            hr.pb-3
+                        - if (user.role === 'admin')
+                            h5.text-center.pb-2 Admin
+                            ul.list-group.list-group-flush
+                                li.list-group-item.bg-light
+                                    a.text-secondary(href="#") All Users
+                                li.list-group-item.bg-light
+                                    a.text-secondary(href="#") All Posts
+                                li.list-group-item.bg-light
+                                    a.text-secondary(href="#") All Comments
+                                hr.pb-3
 
                     .col-md-9.order-md-2
-                        .d-flex.justify-content-center
-                            img.img-fluid.rounded-circle.mb-4(src="images/person_1.jpg" alt="Image" width="250")
+                        .row
+                            .col-md-1
+                            .col-md-10
+                                h3.px-5.pb-5.pt-2 Account Settings
+                            .col-md-1
+
+                        .row
+                            .col-md-2
+                            .col-md-8
+                                form.px-5
+                                    img.img-fluid.profile-image(src=`images/${user.profileImg}` alt=`Photo of ${user.name}`)
+                                    p.d-flex.justify-content-end
+                                        a.border-bottom(href="#") Change photo
+                                    
+                                    label.text-black.mt-3(for="name") Name
+                                    input#name.form-control.rounded(type="text" value=`${user.name}`)
+                                
+                                    label.text-black.mt-3(for="email") Email
+                                    input#email.form-control.rounded(type="email" value=`${user.email}`)
+
+                                    .d-flex.justify-content-end.mt-3
+                                        input#update.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")
+                            .col-md-2
+                        hr
 
                         .row
                             .col-md-1
                             .col-md-10
-                                form.p-5
-                                    .row.form-group
-                                        .col-md-6.mb-3.mb-md-0
-                                            label.text-black(for="name") Name
-                                            input#name.form-control(type="text" value="Kate Hampton")
-                                        .col-md-6
-                                            label.text-black(for="email") Email
-                                            input#email.form-control(type="email" value="email@email.com")
-                                    .d-flex.justify-content-end
-                                        input#update.btn.btn-primary.py-2.px-4(type="submit" value="Update")
+                                h3.px-5.pb-5.pt-2 Change Password
                             .col-md-1
-                        hr
+
+                        .row
+                            .col-md-2
+                            .col-md-8
+                                form.px-5
+                                    
+                                    label.text-black.mt-3(for="currentPass") Current Password
+                                    input#currentPass.form-control.rounded(type="password" placeholder="**********")
+                                
+                                    label.text-black.mt-3(for="newPass") New Password
+                                    input#newPass.form-control.rounded(type="password" placeholder="**********")
+
+                                    label.text-black.mt-3(for="confirmNewPass") Confirm New Password
+                                    input#confirmNewPass.form-control.rounded(type="password" placeholder="**********")
+
+                                    .d-flex.justify-content-end.mt-3
+                                        input#update.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")
+                            .col-md-2
