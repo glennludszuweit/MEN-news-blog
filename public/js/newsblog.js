@@ -152,3 +152,34 @@ if (updateUserPasswordForm) {
     updateUserPassword(currentPass, newPass, confirmNewPass);
   });
 }
+
+/////COMMENT/////
+const comment = async (user, post, comment) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'http://localhost:4000/api/v1/comments',
+      data: {
+        user,
+        post,
+        comment,
+      },
+    });
+    if (res.data.status === 'success') {
+      showAlert('success', 'Comment Added!');
+    }
+  } catch (error) {
+    showAlert('danger', error.response.data.message);
+  }
+};
+
+const commentForm = document.querySelector('.comment-form');
+if (commentForm) {
+  commentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const commentUserId = document.getElementById('commentUserId').value;
+    const commentPostId = document.getElementById('commentPostId').value;
+    const commentMessage = document.getElementById('comment-message').value;
+    comment(commentUserId, commentPostId, commentMessage);
+  });
+}
