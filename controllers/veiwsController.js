@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const User = require('../models/User');
 const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
 
@@ -127,6 +128,34 @@ module.exports = {
     //render template
     res.status(200).render('user/posts', {
       title: 'Your Posts',
+    });
+  }),
+
+  userComments: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('user/comments', {
+      title: 'Your Comments',
+    });
+  }),
+
+  allUsers: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('admin/users', {
+      title: 'All Users',
+    });
+  }),
+
+  allComments: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('admin/comments', {
+      title: 'All Comments',
+    });
+  }),
+
+  allPosts: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('admin/posts', {
+      title: 'All Posts',
     });
   }),
 };

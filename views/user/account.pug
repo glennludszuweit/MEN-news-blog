@@ -14,17 +14,17 @@ block content
                             li.list-group-item.bg-light
                                 a.text-secondary(href="/my-posts") Posts
                             li.list-group-item.bg-light
-                                a.text-secondary(href="#") Comments
+                                a.text-secondary(href="/my-comments") Comments
 
                         - if (user.role === 'admin')
                             h5.text-center.pb-2 Admin
                             ul.list-group.list-group-flush
                                 li.list-group-item.bg-light
-                                    a.text-secondary(href="#") All Users
+                                    a.text-secondary(href="/all-users") All Users
                                 li.list-group-item.bg-light
-                                    a.text-secondary(href="#") All Posts
+                                    a.text-secondary(href="/all-posts") All Posts
                                 li.list-group-item.bg-light
-                                    a.text-secondary(href="#") All Comments
+                                    a.text-secondary(href="/all-comments") All Comments
                                 hr.pb-3
 
                     .col-md-9.order-md-2

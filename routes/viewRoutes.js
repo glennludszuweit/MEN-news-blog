@@ -7,6 +7,31 @@ const router = express.Router();
 //USERS
 router.get('/account', authController.protectRoute, viewsController.account);
 router.get('/my-posts', authController.protectRoute, viewsController.userPosts);
+router.get(
+  '/my-comments',
+  authController.protectRoute,
+  viewsController.userComments
+);
+
+//ADMIN
+router.get(
+  '/all-users',
+  authController.protectRoute,
+  authController.restrictRouteTo('admin'),
+  viewsController.allUsers
+);
+router.get(
+  '/all-posts',
+  authController.protectRoute,
+  authController.restrictRouteTo('admin'),
+  viewsController.allPosts
+);
+router.get(
+  '/all-comments',
+  authController.protectRoute,
+  authController.restrictRouteTo('admin'),
+  viewsController.allComments
+);
 
 //Home
 router.get('/', authController.isLoggedIn, viewsController.indexPage);
