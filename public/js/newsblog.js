@@ -97,6 +97,9 @@ const updateUserData = async (updateUserName, updateUserEmail) => {
       },
     });
     if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        location.assign('/account');
+      }, 2000);
       showAlert('success', 'Credentials updated!');
     }
   } catch (error) {
@@ -128,6 +131,9 @@ const updateUserPassword = async (currentPass, newPass, confirmNewPass) => {
       },
     });
     if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        location.assign('/account');
+      }, 2000);
       showAlert('success', 'Password updated!');
     }
   } catch (error) {

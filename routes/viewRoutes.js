@@ -6,6 +6,7 @@ const router = express.Router();
 
 //USERS
 router.get('/account', authController.protectRoute, viewsController.account);
+router.get('/my-posts', authController.protectRoute, viewsController.userPosts);
 
 //Home
 router.get('/', authController.isLoggedIn, viewsController.indexPage);

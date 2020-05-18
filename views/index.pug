@@ -34,7 +34,7 @@ block content
                 .col-12
                     h2 Recent Posts
             .row
-                each post in posts
+                each post in posts.slice(0, 6)
                     .col-lg-4.mb-4
                         .entry2
                             a(href=`/posts/${post.slug}`)
@@ -80,6 +80,7 @@ block content
                 .col-12
                     h2 More Posts
             .row.align-items-stretch.retro-layout
+                
                 .col-md-5.order-md-2
                     a.hentry.img-1.h-100.gradient(href="single.html" style="background-image: url('images/img_4.jpg');")
                         span.post-category.text-white.bg-danger Travel
