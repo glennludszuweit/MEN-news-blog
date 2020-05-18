@@ -9,12 +9,12 @@ block content
                     .col-md-3.mr-auto.order-md-1.border-right
                         h3.text-center.pb-3= user.name
                         ul.list-group.list-group-flush.pb-3
-                            li.list-group-item.bg-light.active
-                                a.text-dark(href="/account") Settings
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="/account") Settings
                             li.list-group-item.bg-light
                                 a.text-secondary(href="/my-posts") Posts
-                            li.list-group-item.bg-light
-                                a.text-secondary(href="/my-comments") Comments
+                            li.list-group-item.bg-light.active
+                                a.text-dark(href="/my-comments") Comments
 
                         - if (user.role === 'admin')
                             h5.text-center.pb-2 Admin

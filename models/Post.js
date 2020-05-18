@@ -22,10 +22,6 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, 'An article must have contents.'],
     },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
     author: {
       type: String,
       required: [true, 'Who is the author?'],

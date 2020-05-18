@@ -9,8 +9,8 @@ block content
                     .col-md-3.mr-auto.order-md-1.border-right
                         h3.text-center.pb-3= user.name
                         ul.list-group.list-group-flush.pb-3
-                            li.list-group-item.bg-light.active
-                                a.text-dark(href="/account") Settings
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="/account") Settings
                             li.list-group-item.bg-light
                                 a.text-secondary(href="/my-posts") Posts
                             li.list-group-item.bg-light
@@ -21,8 +21,8 @@ block content
                             ul.list-group.list-group-flush
                                 li.list-group-item.bg-light
                                     a.text-secondary(href="/all-users") All Users
-                                li.list-group-item.bg-light
-                                    a.text-secondary(href="/all-posts") All Posts
+                                li.list-group-item.bg-light.active
+                                    a.text-dark(href="/all-posts") All Posts
                                 li.list-group-item.bg-light
                                     a.text-secondary(href="/all-comments") All Comments
                                 hr.pb-3
@@ -32,7 +32,4 @@ block content
                             .col-md-10.text-center All Posts
                             .col-md-2.text-center Action
                         hr
-                        .row
-                            .col-md-10 Sample title
-                            .col-md-2 Action
-                        hr
+                        
