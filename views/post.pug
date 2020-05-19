@@ -42,7 +42,8 @@ block content
             each comment in post.comments
               li.comment
                 .vcard
-                  img(src=`/images/${comment.user.profileImg}` alt="Image placeholder")
+                  - if (user.profileImg)
+                    img(src=`/images/${comment.user.profileImg}` alt="Image placeholder")
                 .comment-body
                   h3=comment.user.name
                   .meta= comment.createdAt.toDateString()

@@ -17,6 +17,8 @@ module.exports = {
     next();
   },
   updateProfile: CatchAsync(async (req, res, next) => {
+    console.log(req.file);
+    console.log(req.body);
     //create error if user post password data
     if (req.body.password || req.body.confirmPassword) {
       return next(

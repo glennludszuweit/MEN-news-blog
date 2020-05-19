@@ -7,7 +7,7 @@ const hideAlert = () => {
 
 const showAlert = (type, msg) => {
   hideAlert();
-  const markup = `<div class="text-center fixed-top alert alert-${type}">${msg}</div>`;
+  const markup = `<div class="fixed-top text-center alert alert-${type}">${msg}</div>`;
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   window.setTimeout(hideAlert, 5000);
 };
@@ -166,6 +166,9 @@ const comment = async (user, post, comment) => {
       },
     });
     if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        location.reload(true);
+      }, 2000);
       showAlert('success', 'Comment Added!');
     }
   } catch (error) {

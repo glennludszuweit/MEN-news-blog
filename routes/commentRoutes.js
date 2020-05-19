@@ -9,7 +9,7 @@ router.get('/', commentsController.getAllComments);
 router.post(
   '/',
   authController.protectRoute,
-  commentsController.setPostUserIds,
+  // commentsController.setPostUserIds,
   commentsController.createComment
 );
 
