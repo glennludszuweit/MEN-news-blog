@@ -2,8 +2,7 @@
 import '@babel/polyfill';
 import { login } from './auth';
 import { register } from './auth';
-import { updateUserData } from './updateUser';
-import { updateUserPassword } from './updateUser';
+import { updateSettings } from './updateSettings';
 import { comment } from './comments';
 
 //DOM elements
@@ -37,19 +36,26 @@ if (loginForm) {
 if (updateUserDataForm) {
   updateUserDataForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const updateUserName = document.getElementById('updateUserName').value;
-    const updateUserEmail = document.getElementById('updateUserEmail').value;
-    updateUserData(updateUserName, updateUserEmail);
+    const name = document.getElementById('updateUserName').value;
+    const email = document.getElementById('updateUserEmail').value;
+    updateSettings({ name, email }, 'data');
   });
 }
 
 if (updateUserPasswordForm) {
-  updateUserPasswordForm.addEventListener('submit', (e) => {
+  updateUserPasswordForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const currentPass = document.getElementById('currentPass').value;
-    const newPass = document.getElementById('newPass').value;
-    const confirmNewPass = document.getElementById('confirmNewPass').value;
-    updateUserPassword(currentPass, newPass, confirmNewPass);
+    const currentPassword = document.getElementById('currentPass').value;
+    const password = document.getElementById('newPass').value;
+    const confirmPassword = document.getElementById('confirmNewPass').value;
+    await updateSettings(
+      { currentPassword, password, confirmPassword },
+      'password'
+    );
+
+    document.getElementById('currentPass').value = '';
+    document.getElementById('newPass').value = '';
+    document.getElementById('confirmNewPass').value = '';
   });
 }
 
