@@ -1,11 +1,6 @@
 const express = require('express');
-const multer = require('multer');
 const usersController = require('../controllers/usersController');
 const authController = require('../controllers/authController');
-
-const upload = multer({
-  dest: 'public/images/users',
-});
 
 const router = express.Router();
 
@@ -29,7 +24,7 @@ router.get(
 );
 router.patch(
   '/updateProfile',
-  upload.single('profileImg'),
+  usersController.uploadUserImg,
   authController.protectRoute,
   usersController.updateProfile
 );
