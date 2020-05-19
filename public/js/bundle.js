@@ -8525,6 +8525,9 @@ var updateSettings = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
+              window.setTimeout(function () {
+                location.assign('/account');
+              }, 2000);
               (0, _alert.showAlert)('success', "".concat(type.toUppercase(), "Credentials updated!"));
             }
 
@@ -8918,30 +8921,49 @@ if (loginForm) {
 }
 
 if (updateUserDataForm) {
-  updateUserDataForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var name = document.getElementById('updateUserName').value;
-    var email = document.getElementById('updateUserEmail').value;
-    (0, _updateSettings.updateSettings)({
-      name: name,
-      email: email
-    }, 'data');
-  });
-}
-
-if (updateUserPasswordForm) {
-  updateUserPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
+  updateUserDataForm.addEventListener('submit', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-      var currentPassword, password, confirmPassword;
+      var form;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               e.preventDefault();
+              form = new FormData();
+              form.append('name', document.getElementById('updateUserName').value);
+              form.append('email', document.getElementById('updateUserEmail').value);
+              form.append('profileImg', document.getElementById('updateUserPhoto').files[0]);
+              console.log(form);
+              _context.next = 8;
+              return (0, _updateSettings.updateSettings)(form, 'data');
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+}
+
+if (updateUserPasswordForm) {
+  updateUserPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
+      var currentPassword, password, confirmPassword;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
               currentPassword = document.getElementById('currentPass').value;
               password = document.getElementById('newPass').value;
               confirmPassword = document.getElementById('confirmNewPass').value;
-              _context.next = 6;
+              _context2.next = 6;
               return (0, _updateSettings.updateSettings)({
                 currentPassword: currentPassword,
                 password: password,
@@ -8955,14 +8977,14 @@ if (updateUserPasswordForm) {
 
             case 9:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }));
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
     };
   }());
 }

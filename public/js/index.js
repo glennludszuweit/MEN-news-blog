@@ -34,11 +34,17 @@ if (loginForm) {
 }
 
 if (updateUserDataForm) {
-  updateUserDataForm.addEventListener('submit', (e) => {
+  updateUserDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('updateUserName').value;
-    const email = document.getElementById('updateUserEmail').value;
-    updateSettings({ name, email }, 'data');
+    const form = new FormData();
+    form.append('name', document.getElementById('updateUserName').value);
+    form.append('email', document.getElementById('updateUserEmail').value);
+    form.append(
+      'profileImg',
+      document.getElementById('updateUserPhoto').files[0]
+    );
+    console.log(form);
+    await updateSettings(form, 'data');
   });
 }
 
