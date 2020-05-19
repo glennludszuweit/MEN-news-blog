@@ -48,8 +48,6 @@ module.exports = {
   uploadUserImg: upload.single('profileImg'),
 
   updateProfile: CatchAsync(async (req, res, next) => {
-    console.log(req.file);
-    console.log(req.body);
     //create error if user post password data
     if (req.body.password || req.body.confirmPassword) {
       return next(
@@ -60,7 +58,8 @@ module.exports = {
       );
     }
     //update user document
-    const filteredBody = filterObj(req.body, 'name', 'email', 'profileImg');
+    const filteredBody = filterObj(req.body, 'name', 'email');
+    if (req.file) filteredBody.profileImg = req.file.filename;
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
       filteredBody,

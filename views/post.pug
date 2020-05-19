@@ -43,7 +43,10 @@ block content
               li.comment
                 .vcard
                   - if (user.profileImg)
-                    img(src=`/images/${comment.user.profileImg}` alt="Image placeholder")
+                    img(src=`/images/users/${comment.user.profileImg}` alt=`${comment.user.name}`)
+                  - if (!user.profileImg)
+                    img(src='/images/users/default.png' alt=`${comment.user.name}`)
+
                 .comment-body
                   h3=comment.user.name
                   .meta= comment.createdAt.toDateString()
