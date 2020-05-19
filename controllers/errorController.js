@@ -92,6 +92,6 @@ module.exports = {
   },
 
   operationalErrorHandling: (req, res, next) => {
-    next(new AppError(`Can't find page`, 404));
+    next(new AppError('Cannot find page', 404));
   },
 };

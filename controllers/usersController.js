@@ -60,6 +60,7 @@ module.exports = {
     //update user document
     const filteredBody = filterObj(req.body, 'name', 'email');
     if (req.file) filteredBody.profileImg = req.file.filename;
+
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
       filteredBody,
@@ -75,6 +76,7 @@ module.exports = {
       },
     });
   }),
+
   deleteProfile: CatchAsync(async (req, res, next) => {
     await User.findByIdAndUpdate(req.user.id, {
       active: false,
