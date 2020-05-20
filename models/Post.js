@@ -39,7 +39,8 @@ const postSchema = new mongoose.Schema(
       type: String,
       // required: [true, 'A posts must have a cover image.'],
     },
-    images: [String],
+    contentImage1: [String],
+    contentImage2: [String],
     createdAt: {
       type: Date,
       default: Date.now(),

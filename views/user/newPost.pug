@@ -45,29 +45,6 @@ block content
                                         .custom-file
                                             input#postCoverImage.custom-file-input(type="file")
                                             label.custom-file-label(for="postCoverImage") Cover image ..
-
-                                    .input-group.mt-3
-                                        .custom-file
-                                            input#postContentImages.custom-file-input(type="file" multiple)
-                                            label.custom-file-label(for="postContentImages") Body images (min 2) ...
-
-                                    script.
-                                        $('#postCoverImage').on('change',function(){
-                                        //get the file name
-                                        var filename = $(this).val();
-                                        //replace the "Choose a file" label
-                                        $(this).next('.custom-file-label').html(filename);
-                                        })
-
-                                        $('#postContentImages').on('change',function(){
-                                        //get the file name
-                                        var filenames = $.map(this.files, function (file) {
-                                            return file.name;
-                                        });
-                                        //replace the "Choose a file" label
-                                        $(this).next('.custom-file-label').html(filenames.join(', '));
-                                        })
-                                        
                                     
                                     label.text-black.mt-3(for="postTitle") Title
                                     input#postTitle.form-control.rounded(type="text")
@@ -78,27 +55,29 @@ block content
                                     label.text-black.mt-3(for="postCategory") Category
                                     input#postCategory.form-control.rounded(type="text")
 
-                                    //- label.text-black.mt-3(for="postCategory") Category
-                                    //- .dropdown.show
-                                    //-     a#postCategory.btn.border.bg-white.dropdown-toggle.rounded.w-100.p-2.text-black(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                    //-         | Select category for Post
-                                    //-     .dropdown-menu.w-100(aria-labelledby="postCategory")
-                                    //-         a.dropdown-item(href="#") Politics
-                                    //-         a.dropdown-item(href="#") Tech
-                                    //-         a.dropdown-item(href="#") Entertainment
-                                    //-         a.dropdown-item(href="#") Travel
-                                    //-         a.dropdown-item(href="#") Sport
-                                    //- script.
-                                    //-     $(".dropdown-menu a").on('click',function(){
-                                    //-         $(this).parents(".dropdown").find('.btn').html('<img src="img/lorem.png" alt="lorem">' + $(this).text() + ' <span class="caret"></span>' );
-                                    //-         $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-                                    //-     });
-
                                     label.text-black.mt-3(for="postDescription") Description
                                     input#postDescription.form-control.rounded(type="text")
 
                                     label.text-black.mt-3(for="postIntroduction") Introduction
                                     textarea#postIntroduction.form-control.rounded(type="text" rows="5")
+
+                                    .input-group.mt-3
+                                        .custom-file
+                                            input#postContentImages1.custom-file-input(type="file")
+                                            label.custom-file-label(for="postContentImages1") Content Image 1
+                                        
+                                    .input-group.mt-3
+                                        .custom-file
+                                            input#postContentImages2.custom-file-input(type="file")
+                                            label.custom-file-label(for="postContentImages2") Content Image 2
+
+                                    script.
+                                        $('#postCoverImage, #postContentImages1, #postContentImages2').on('change',function(){
+                                        //get the file name
+                                        var filename = $(this).val();
+                                        //replace the "Choose a file" label
+                                        $(this).next('.custom-file-label').html(filename);
+                                        })
                                 
                                     label.text-black.mt-3(for="postContent") Content
                                     textarea#postContent.form-control.rounded(type="email" rows="10")

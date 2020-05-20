@@ -76,8 +76,12 @@ if (createNewPostForm) {
       document.getElementById('postCoverImage').files[0]
     );
     form.append(
-      'images',
-      document.getElementById('postContentImages').files[0]
+      'contentImage1',
+      document.getElementById('postContentImages1').files[0]
+    );
+    form.append(
+      'contentImage2',
+      document.getElementById('postContentImages2').files[0]
     );
     form.append('title', document.getElementById('postTitle').value);
     form.append('author', document.getElementById('postAuthor').value);

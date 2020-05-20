@@ -31,41 +31,56 @@ module.exports = {
 
   uploadPostImgs: upload.fields([
     { name: 'coverImage', maxCount: 1 },
-    { name: 'images', maxCount: 2 },
+    { name: 'contentImage1', maxCount: 1 },
+    { name: 'contentImage2', maxCount: 1 },
   ]),
 
-  resizePostImg: (req, res, next) => {
-    console.log(req.files);
-    // if (!req.file) return next();
+  resizePostImg: CatchAsync(async (req, res, next) => {
+    if (
+      !req.files.coverImage ||
+      !req.files.contentImage1 ||
+      !req.files.contentImage2
+    )
+      return next();
 
-    // req.file.filename = `user-${Date.now()}.jpeg`;
+    //Cover image
+    req.body.coverImage = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+    await sharp(req.files.coverImage[0].buffer)
+      .toFormat('jpeg')
+      .jpeg({ quality: 100 })
+      .toFile(`public/images/posts/${req.body.coverImage}`);
 
-    // sharp(req.file.buffer).toFile(`public/images/posts/${req.file.filename}`);
+    req.body.contentImage1 = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+    await sharp(req.files.contentImage1[0].buffer)
+      .toFormat('jpeg')
+      .jpeg({ quality: 100 })
+      .toFile(`public/images/posts/${req.body.contentImage1}`);
+
+    req.body.contentImage2 = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+    await sharp(req.files.contentImage2[0].buffer)
+      .toFormat('jpeg')
+      .jpeg({ quality: 100 })
+      .toFile(`public/images/posts/${req.body.contentImage2}`);
+
+    //Images
+    // req.body.images = [];
+    // await Promise.all(
+    //   req.files.images.map(async (file, i) => {
+    //     const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+    //     await sharp(file.buffer)
+    //       .toFormat('jpeg')
+    //       .jpeg({ quality: 100 })
+    //       .toFile(`public/images/posts/${filename}`);
+
+    //     req.body.images.push(filename);
+    //   })
+    // );
 
     next();
-  },
-
-  //Create
-  createPost: CatchAsync(async (req, res, next) => {
-    const postsParams = {
-      title: req.body.title,
-      author: req.body.author,
-      category: req.body.category,
-      description: req.body.description,
-      introduction: req.body.introduction,
-      content: req.body.content,
-    };
-
-    // if (req.file) postsParams.coverImage = req.file.filename;
-    const newPost = await Post.create(postsParams);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        newPost,
-      },
-    });
   }),
 
+  //Create
+  createPost: factory.createOne(Post),
   //Read
   getAllPosts: factory.getAll(Post),
   getPost: factory.getOne(Post, { path: 'comments' }),

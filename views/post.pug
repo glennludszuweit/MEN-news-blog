@@ -20,12 +20,13 @@ block content
         .post-content-body
           p= post.description
           p= post.introduction
-          if post.images[0, 1]
             .row.mb-5.mt-5
-              .col-md-6.mb-4
-                  img#post-images.img-fluid.rounded(src=`/images/posts/${post.images[0]}` alt="Image placeholder")
-              .col-md-6.mb-4
-                img#post-images.img-fluid.rounded(src=`/images/posts/${post.images[1]}` alt="Image placeholder")
+              if post.contentImage1
+                .col-md-6.mb-4
+                  img#post-images.img-fluid.rounded(src=`/images/posts/${post.contentImage1}` alt="Image placeholder")
+              if post.contentImage2
+                .col-md-6.mb-4
+                  img#post-images.img-fluid.rounded(src=`/images/posts/${post.contentImage2}` alt="Image placeholder")
           p= post.content
         .pt-5
           p

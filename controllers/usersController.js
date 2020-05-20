@@ -39,19 +39,19 @@ module.exports = {
 
   uploadUserImg: upload.single('profileImg'),
 
-  resizeUserImg: (req, res, next) => {
+  resizeUserImg: CatchAsync(async (req, res, next) => {
     if (!req.file) return next();
 
     req.file.filename = `user-${Date.now()}.jpeg`;
 
-    sharp(req.file.buffer)
+    await sharp(req.file.buffer)
       .resize(800, 500)
       .toFormat('jpeg')
       .jpeg({ quality: 100 })
       .toFile(`public/images/users/${req.file.filename}`);
 
     next();
-  },
+  }),
 
   updateProfile: CatchAsync(async (req, res, next) => {
     //create error if user post password data
