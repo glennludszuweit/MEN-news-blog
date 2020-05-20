@@ -124,6 +124,13 @@ module.exports = {
     });
   }),
 
+  newPost: CatchAsync(async (req, res) => {
+    //render template
+    res.status(200).render('user/newPost', {
+      title: 'Add New Posts',
+    });
+  }),
+
   userPosts: CatchAsync(async (req, res) => {
     //render template
     res.status(200).render('user/posts', {

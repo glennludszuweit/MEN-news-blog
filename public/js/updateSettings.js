@@ -15,9 +15,7 @@ export const updateSettings = async (data, type) => {
       data,
     });
     if (res.data.status === 'success') {
-      window.setTimeout(() => {
-        location.assign('/account');
-      }, 2000);
+      location.assign('/account');
       showAlert('success', `${type.toUppercase()}Credentials updated!`);
     }
   } catch (error) {

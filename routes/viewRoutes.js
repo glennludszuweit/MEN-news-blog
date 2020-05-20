@@ -6,6 +6,7 @@ const router = express.Router();
 
 //USERS
 router.get('/account', authController.protectRoute, viewsController.account);
+router.get('/new-post', authController.protectRoute, viewsController.newPost);
 router.get('/my-posts', authController.protectRoute, viewsController.userPosts);
 router.get(
   '/my-comments',
