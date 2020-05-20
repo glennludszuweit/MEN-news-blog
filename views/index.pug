@@ -34,7 +34,7 @@ block content
                 .col-12
                     h2 Recent Posts
             .row
-                each post in posts.slice(0, 6)
+                each post in posts
                     .col-lg-4.mb-4
                         .entry2
                             a(href=`/posts/${post.slug}`)
