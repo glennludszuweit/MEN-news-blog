@@ -1,5 +1,6 @@
 const multer = require('multer');
 const AppError = require('../utils/AppError');
+const CatchAsync = require('../utils/CatchAsync');
 const Post = require('../models/Post');
 const factory = require('./handlerFactory');
 
@@ -31,9 +32,26 @@ const upload = multer({
 
 module.exports = {
   //upload cover image
-  postCoverImg: upload.single('profileImg'),
+  postCoverImg: upload.single('coverImage'),
   //Create
-  createPost: factory.createOne(Post),
+  createPost: CatchAsync(async (req, res, next) => {
+    const postsParams = {
+      title: req.body.title,
+      author: req.body.author,
+      category: req.body.category,
+      description: req.body.description,
+      introduction: req.body.introduction,
+      content: req.body.content,
+    };
+    if (req.file) postsParams.coverImage = req.file.filename;
+    const newPost = await Post.create(postsParams);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        newPost,
+      },
+    });
+  }),
   //Read
   getAllPosts: factory.getAll(Post),
   getPost: factory.getOne(Post, { path: 'comments' }),
