@@ -43,6 +43,7 @@ module.exports = {
       introduction: req.body.introduction,
       content: req.body.content,
     };
+
     if (req.file) postsParams.coverImage = req.file.filename;
     const newPost = await Post.create(postsParams);
     res.status(201).json({
@@ -52,6 +53,7 @@ module.exports = {
       },
     });
   }),
+
   //Read
   getAllPosts: factory.getAll(Post),
   getPost: factory.getOne(Post, { path: 'comments' }),

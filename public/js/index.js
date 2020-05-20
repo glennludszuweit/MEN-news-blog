@@ -4,12 +4,14 @@ import { login } from './auth';
 import { register } from './auth';
 import { updateSettings } from './updateSettings';
 import { comment } from './comments';
+import { newPost } from './post';
 
 //DOM elements
 const registerForm = document.querySelector('.form-signup');
 const loginForm = document.querySelector('.form-signin');
 const updateUserDataForm = document.querySelector('.update-user-data');
 const updateUserPasswordForm = document.querySelector('.update-user-password');
+const createNewPostForm = document.querySelector('.create-new-post');
 const commentForm = document.querySelector('.comment-form');
 
 //DELEGATION
@@ -62,6 +64,28 @@ if (updateUserPasswordForm) {
     document.getElementById('currentPass').value = '';
     document.getElementById('newPass').value = '';
     document.getElementById('confirmNewPass').value = '';
+  });
+}
+
+if (createNewPostForm) {
+  createNewPostForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append('coverImage', document.getElementById('postCoverImage').value);
+    form.append('title', document.getElementById('postTitle').value);
+    form.append('author', document.getElementById('postAuthor').value);
+    form.append('category', document.getElementById('postCategory').value);
+    form.append(
+      'description',
+      document.getElementById('postDescription').value
+    );
+    form.append(
+      'introduction',
+      document.getElementById('postIntroduction').value
+    );
+    form.append('content', document.getElementById('postContent').value);
+    console.log(form);
+    newPost(form);
   });
 }
 
