@@ -71,7 +71,10 @@ if (createNewPostForm) {
   createNewPostForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const form = new FormData();
-    form.append('coverImage', document.getElementById('postCoverImage').value);
+    form.append(
+      'coverImage',
+      document.getElementById('postCoverImage').files[0]
+    );
     form.append('title', document.getElementById('postTitle').value);
     form.append('author', document.getElementById('postAuthor').value);
     form.append('category', document.getElementById('postCategory').value);

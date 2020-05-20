@@ -12,7 +12,7 @@ export const newPost = async (data) => {
     if (res.data.status === 'success') {
       showAlert('success', 'Post created successfully!');
       window.setTimeout(() => {
-        location.assign('/new-post');
+        location.assign('/my-posts');
       }, 1500);
     }
   } catch (error) {

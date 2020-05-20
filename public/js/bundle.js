@@ -8661,7 +8661,7 @@ var newPost = /*#__PURE__*/function () {
             if (res.data.status === 'success') {
               (0, _alert.showAlert)('success', 'Post created successfully!');
               window.setTimeout(function () {
-                location.assign('/new-post');
+                location.assign('/my-posts');
               }, 1500);
             }
 
@@ -9059,7 +9059,7 @@ if (createNewPostForm) {
   createNewPostForm.addEventListener('submit', function (e) {
     e.preventDefault();
     var form = new FormData();
-    form.append('coverImage', document.getElementById('postCoverImage').value);
+    form.append('coverImage', document.getElementById('postCoverImage').files[0]);
     form.append('title', document.getElementById('postTitle').value);
     form.append('author', document.getElementById('postAuthor').value);
     form.append('category', document.getElementById('postCategory').value);
