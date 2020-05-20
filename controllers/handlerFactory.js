@@ -6,6 +6,7 @@ module.exports = {
   //CREATE
   createOne: (Model) =>
     CatchAsync(async (req, res, next) => {
+      if (req.file) req.body.coverImage = req.file.filename;
       const doc = await Model.create(req.body);
       res.status(201).json({
         status: 'success',

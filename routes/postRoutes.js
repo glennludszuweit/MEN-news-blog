@@ -9,7 +9,12 @@ router.use('/:id/comments', commentRouter);
 
 router.get('/', postsController.getAllPosts);
 
-router.post('/', authController.protectRoute, postsController.createPost);
+router.post(
+  '/',
+  postsController.postCoverImg,
+  authController.protectRoute,
+  postsController.createPost
+);
 
 router.get('/:id', postsController.getPost);
 
