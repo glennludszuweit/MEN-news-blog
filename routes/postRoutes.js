@@ -11,7 +11,8 @@ router.get('/', postsController.getAllPosts);
 
 router.post(
   '/',
-  postsController.postCoverImg,
+  postsController.uploadPostImgs,
+  postsController.resizePostImg,
   authController.protectRoute,
   postsController.createPost
 );
@@ -21,7 +22,8 @@ router.get('/:id', postsController.getPost);
 router.patch(
   '/:id',
   authController.protectRoute,
-  authController.restrictRouteTo('admin', 'user'),
+  postsController.uploadPostImgs,
+  postsController.resizePostImg,
   postsController.updatePost
 );
 
