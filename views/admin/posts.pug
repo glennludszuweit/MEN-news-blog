@@ -33,17 +33,17 @@ block content
                                 h1 All Posts
                             .col-md-6.d-flex.justify-content-end
                                 a.btn.btn-primary.rounded.my-3(href="/new-post") Add new post
-                        .row 
-                            .col-md-10.text-center 
-                                h5 All Posts
-                            .col-md-2.text-center 
-                                h5 Action
                         hr
                         each post in posts
                             .row 
-                                .col-md-10.text-center 
-                                    a(href="#")= post.title
-                                .col-md-2.text-center 
-                                    
+                                .col-md-10
+                                    a(href=`/posts/${post.slug}`)
+                                        h4= post.title
+                                .col-md-2
+                                    a#deletePost(href="#") Edit
+                                    | 
+                                    | |
+                                    | 
+                                    a#editPost(href="#") Delete
                             hr
                         
