@@ -11,10 +11,10 @@ block content
                         ul.list-group.list-group-flush.pb-3
                             li.list-group-item.bg-light.active
                                 a.text-dark(href="/account") Settings
+                            //- li.list-group-item.bg-light
+                            //-     a.text-secondary(href="/my-posts") Posts
                             li.list-group-item.bg-light
-                                a.text-secondary(href="/my-posts") Posts
-                            li.list-group-item.bg-light
-                                a.text-secondary(href="/my-comments") Comments
+                                a.text-secondary(href="/my-comments") My Comments
 
                         - if (user.role === 'admin')
                             h5.text-center.pb-2 Admin

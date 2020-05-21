@@ -146,9 +146,11 @@ module.exports = {
   }),
 
   allUsers: CatchAsync(async (req, res) => {
+    const users = await User.find();
     //render template
     res.status(200).render('admin/users', {
       title: 'All Users',
+      users,
     });
   }),
 
@@ -161,8 +163,10 @@ module.exports = {
 
   allPosts: CatchAsync(async (req, res) => {
     //render template
+    const posts = await Post.find();
     res.status(200).render('admin/posts', {
       title: 'All Posts',
+      posts,
     });
   }),
 };

@@ -45,7 +45,6 @@ module.exports = {
     req.file.filename = `user-${Date.now()}.jpeg`;
 
     await sharp(req.file.buffer)
-      .resize(800, 500)
       .toFormat('jpeg')
       .jpeg({ quality: 100 })
       .toFile(`public/images/users/${req.file.filename}`);

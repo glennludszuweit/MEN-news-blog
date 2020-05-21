@@ -1,6 +1,8 @@
 const express = require('express');
 const viewsController = require('../controllers/veiwsController');
 const authController = require('../controllers/authController');
+// const postsController = require('../controllers/postsController');
+const usersController = require('../controllers/usersController');
 
 const router = express.Router();
 
@@ -19,12 +21,14 @@ router.get(
   '/all-users',
   authController.protectRoute,
   authController.restrictRouteTo('admin'),
-  viewsController.allUsers
+  viewsController.allUsers,
+  usersController.getUser
 );
 router.get(
   '/all-posts',
   authController.protectRoute,
   authController.restrictRouteTo('admin'),
+  // postsController.getAllPosts,
   viewsController.allPosts
 );
 router.get(

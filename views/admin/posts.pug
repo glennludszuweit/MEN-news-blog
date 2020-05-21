@@ -11,10 +11,10 @@ block content
                         ul.list-group.list-group-flush.pb-3
                             li.list-group-item.bg-light
                                 a.text-secondary(href="/account") Settings
+                            //- li.list-group-item.bg-light
+                            //-     a.text-secondary(href="/my-posts") Posts
                             li.list-group-item.bg-light
-                                a.text-secondary(href="/my-posts") Posts
-                            li.list-group-item.bg-light
-                                a.text-secondary(href="/my-comments") Comments
+                                a.text-secondary(href="/my-comments") My Comments
 
                         - if (user.role === 'admin')
                             h5.text-center.pb-2 Admin
@@ -28,8 +28,22 @@ block content
                                 hr.pb-3
 
                     .col-md-9.order-md-2
+                        .row
+                            .col-md-6
+                                h1 All Posts
+                            .col-md-6.d-flex.justify-content-end
+                                a.btn.btn-primary.rounded.my-3(href="/new-post") Add new post
                         .row 
-                            .col-md-10.text-center All Posts
-                            .col-md-2.text-center Action
+                            .col-md-10.text-center 
+                                h5 All Posts
+                            .col-md-2.text-center 
+                                h5 Action
                         hr
+                        each post in posts
+                            .row 
+                                .col-md-10.text-center 
+                                    a(href="#")= post.title
+                                .col-md-2.text-center 
+                                    
+                            hr
                         

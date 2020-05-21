@@ -8525,7 +8525,6 @@ var updateSettings = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              location.assign('/account');
               (0, _alert.showAlert)('success', "".concat(type.toUppercase(), "Credentials updated!"));
             }
 
@@ -9110,7 +9109,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34045" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39849" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

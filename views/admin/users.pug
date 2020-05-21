@@ -11,10 +11,10 @@ block content
                         ul.list-group.list-group-flush.pb-3
                             li.list-group-item.bg-light
                                 a.text-secondary(href="/account") Settings
+                            //- li.list-group-item.bg-light
+                            //-     a.text-secondary(href="/my-posts") Posts
                             li.list-group-item.bg-light
-                                a.text-secondary(href="/my-posts") Posts
-                            li.list-group-item.bg-light
-                                a.text-secondary(href="/my-comments") Comments
+                                a.text-secondary(href="/my-comments") My Comments
 
                         - if (user.role === 'admin')
                             h5.text-center.pb-2 Admin
@@ -28,11 +28,27 @@ block content
                                 hr.pb-3
 
                     .col-md-9.order-md-2
+                        h3 All Users
                         .row 
-                            .col-md-10.text-center Users Name
-                            .col-md-2.text-center Action
+                            .col-md-1 
+                            .col-md-5 Name
+                            .col-md-5 Email
+                            .col-md-1
                         hr
-                        .row
-                            .col-md-10 Sample title
-                            .col-md-2 Action
-                        hr
+
+                        each user in users
+                            
+                        
+                            .row
+                                .col-md-1
+                                    if user.profileImg
+                                        img.rounded-circle.border-primary#alluser-img(src=`/images/users/${user.profileImg}` alt=`${user.name}`)
+                                    else if !user.profileImg
+                                        img.rounded-circle.border-primary#alluser-img(src=`/images/users/default.png` alt=`${user.name}`)
+                                .col-md-5 
+                                    p.text-black= user.name
+                                .col-md-5 
+                                    a.text-black= user.email
+                                .col-md-1
+                                    a#deleteUser(href="#") Delete
+                            hr
