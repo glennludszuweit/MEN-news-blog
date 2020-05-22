@@ -32,3 +32,7 @@ block content
                     .col-md-9.order-md-2
                         h3 My Comments
                         hr
+                        each comment in comments
+                            .row
+                                .col-md-5
+                                    p= comment.comment

@@ -1,5 +1,6 @@
 const Post = require('../models/Post');
 const User = require('../models/User');
+const Comment = require('../models/Comment');
 const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
 
@@ -141,9 +142,11 @@ module.exports = {
   }),
 
   userComments: CatchAsync(async (req, res) => {
+    const comments = await Comment.find({ user: req.user._id });
     //render template
     res.status(200).render('user/comments', {
       title: 'Your Comments',
+      comments,
     });
   }),
 
