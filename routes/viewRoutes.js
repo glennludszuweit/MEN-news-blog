@@ -1,7 +1,7 @@
 const express = require('express');
 const viewsController = require('../controllers/veiwsController');
 const authController = require('../controllers/authController');
-// const postsController = require('../controllers/postsController');
+const postsController = require('../controllers/postsController');
 const usersController = require('../controllers/usersController');
 
 const router = express.Router();
@@ -9,7 +9,11 @@ const router = express.Router();
 //USERS
 router.get('/account', authController.protectRoute, viewsController.account);
 router.get('/new-post', authController.protectRoute, viewsController.newPost);
-router.get('/edit-post', authController.protectRoute, viewsController.editPost);
+router.get(
+  '/edit-post/:id',
+  authController.protectRoute,
+  viewsController.editPost
+);
 router.get('/my-posts', authController.protectRoute, viewsController.userPosts);
 router.get(
   '/my-comments',

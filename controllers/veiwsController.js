@@ -133,9 +133,11 @@ module.exports = {
   }),
 
   editPost: CatchAsync(async (req, res) => {
+    const post = await Post.findById(req.params.id);
     //render template
     res.status(200).render('user/editPost', {
-      title: 'Edit Posts',
+      title: 'Edit Post',
+      post,
     });
   }),
 

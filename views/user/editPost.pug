@@ -1,0 +1,91 @@
+extends ../layout
+
+block content
+
+    .site-section.bg-light
+        .container
+            .account-profile
+                .row
+                    .col-md-3.mr-auto.order-md-1.border-right
+                        h3.text-center.pb-3= user.name
+                        ul.list-group.list-group-flush.pb-3
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="/account") Settings
+                            li.list-group-item.bg-light
+                                    a.text-secondary(href="/new-post") New Post
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="/my-posts") My Posts
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="/my-comments") My Comments
+
+                        - if (user.role === 'admin')
+                            h5.text-center.pb-2 Admin
+                            ul.list-group.list-group-flush
+                                li.list-group-item.bg-light
+                                    a.text-secondary(href="/all-users") All Users
+                                li.list-group-item.bg-light
+                                    a.text-secondary(href="/all-posts") All Posts
+                                li.list-group-item.bg-light
+                                    a.text-secondary(href="/all-comments") All Comments
+                                hr.pb-3
+
+                    .col-md-9.order-md-2
+                        .row
+                            .col-md-1
+                            .col-md-10
+                                h3.px-5.pb-3.pt-2 Create new Post
+                            .col-md-1
+
+                        .row
+                            .col-md-1
+                            .col-md-10
+                                form.create-new-post.px-5.pb-3
+                                    
+                                    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+
+                                    .input-group
+                                        .custom-file
+                                            input#postCoverImage.custom-file-input(type="file")
+                                            label.custom-file-label(for="postCoverImage") Cover image ..
+                                    
+                                    label.text-black.mt-3(for="postTitle") Title
+                                    input#postTitle.form-control.rounded(type="text" value=`${post.title}`)
+
+                                    label.text-black.mt-3(for="postAuthor") Author
+                                    input#postAuthor.form-control.rounded(type="text")
+
+                                    label.text-black.mt-3(for="postCategory") Category
+                                    input#postCategory.form-control.rounded(type="text")
+
+                                    label.text-black.mt-3(for="postDescription") Description
+                                    input#postDescription.form-control.rounded(type="text")
+
+                                    label.text-black.mt-3(for="postIntroduction") Introduction
+                                    textarea#postIntroduction.form-control.rounded(type="text" rows="5")
+
+                                    .input-group.mt-3
+                                        .custom-file
+                                            input#postContentImages1.custom-file-input(type="file")
+                                            label.custom-file-label(for="postContentImages1") Content Image 1
+                                        
+                                    .input-group.mt-3
+                                        .custom-file
+                                            input#postContentImages2.custom-file-input(type="file")
+                                            label.custom-file-label(for="postContentImages2") Content Image 2
+
+                                    script.
+                                        $('#postCoverImage, #postContentImages1, #postContentImages2').on('change',function(){
+                                        //get the file name
+                                        var filename = $(this).val();
+                                        //replace the "Choose a file" label
+                                        $(this).next('.custom-file-label').html(filename);
+                                        })
+                                
+                                    label.text-black.mt-3(for="postContent") Content
+                                    textarea#postContent.form-control.rounded(type="email" rows="10")
+
+                                    .d-flex.justify-content-end.mt-3
+                                        input.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Create")
+                            .col-md-1
+
+                        
