@@ -39,8 +39,8 @@ block content
                         .row
                             .col-md-1
                             .col-md-10
-                                form.e-post.px-5.pb-3
-                                    
+                                form.update-post.px-5.pb-3
+                                    input#updatePostId(type="text" value=`${post.id}` style="display: none")
                                     if post.coverImage
                                         img.img-fluid.rounded.my-1.w-100(src=`/images/posts/${post.coverImage}` alt=`Photo of ${post.title}`)
                                     else
@@ -50,23 +50,23 @@ block content
 
                                     .input-group
                                         .custom-file
-                                            input#postCoverImage.custom-file-input(type="file")
-                                            label.custom-file-label(for="postCoverImage") Change cover image ..
+                                            input#updatePostCoverImage.custom-file-input(type="file")
+                                            label.custom-file-label(for="updatePostCoverImage") Change cover image ..
                                     
-                                    label.text-black.mt-3(for="postTitle") Title
-                                    input#postTitle.form-control.rounded(type="text" value=`${post.title}`)
+                                    label.text-black.mt-3(for="updatePostTitle") Title
+                                    input#updatePostTitle.form-control.rounded(type="text" value=`${post.title}`)
 
-                                    label.text-black.mt-3(for="postAuthor") Author
-                                    input#postAuthor.form-control.rounded(type="text" value=`${post.author}`)
+                                    label.text-black.mt-3(for="updatePostAuthor") Author
+                                    input#updatePostAuthor.form-control.rounded(type="text" value=`${post.author}`)
 
-                                    label.text-black.mt-3(for="postCategory") Category
-                                    input#postCategory.form-control.rounded(type="text" value=`${post.category}`)
+                                    label.text-black.mt-3(for="updatePostCategory") Category
+                                    input#updatePostCategory.form-control.rounded(type="text" value=`${post.category}`)
 
-                                    label.text-black.mt-3(for="postDescription") Description
-                                    input#postDescription.form-control.rounded(type="text" value=`${post.description}`)
+                                    label.text-black.mt-3(for="updatePostDescription") Description
+                                    input#updatePostDescription.form-control.rounded(type="text" value=`${post.description}`)
 
-                                    label.text-black.mt-3(for="postIntroduction") Introduction
-                                    textarea#postIntroduction.form-control.rounded(type="text" rows="5")= post.introduction
+                                    label.text-black.mt-3(for="updatePostIntroduction") Introduction
+                                    textarea#updatePostIntroduction.form-control.rounded(type="text" rows="5")= post.introduction
                                     
                                     if post.contentImage1
                                         h5.mt-3 Content image 1
@@ -76,8 +76,8 @@ block content
 
                                     .input-group
                                         .custom-file
-                                            input#postContentImages1.custom-file-input(type="file")
-                                            label.custom-file-label(for="postContentImages1") Change content Image 1
+                                            input#updatePostContentImages1.custom-file-input(type="file")
+                                            label.custom-file-label(for="updatePostContentImages1") Change content Image 1
 
                                     if post.contentImage2
                                         h5.mt-3 Content image 2
@@ -87,11 +87,11 @@ block content
                                         
                                     .input-group
                                         .custom-file
-                                            input#postContentImages2.custom-file-input(type="file")
-                                            label.custom-file-label(for="postContentImages2") Change content Image 2
+                                            input#updatePostContentImages2.custom-file-input(type="file")
+                                            label.custom-file-label(for="updatePostContentImages2") Change content Image 2
 
                                     script.
-                                        $('#postCoverImage, #postContentImages1, #postContentImages2').on('change',function(){
+                                        $('#updatePostCoverImage, #updatePostContentImages1, #updatePostContentImages2').on('change',function(){
                                         //get the file name
                                         var filename = $(this).val();
                                         //replace the "Choose a file" label
@@ -99,7 +99,7 @@ block content
                                         })
                                 
                                     label.text-black.mt-3(for="postContent") Content
-                                    textarea#postContent.form-control.rounded(type="text" rows="15")= post.content
+                                    textarea#updatePostContent.form-control.rounded(type="text" rows="15")= post.content
 
                                     .d-flex.justify-content-end.mt-3
                                         input.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Create")

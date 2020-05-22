@@ -21,10 +21,16 @@ router.post(
 router.get('/:id', postsController.getPost);
 
 router.patch(
-  '/:id',
+  '/updateMyPost',
   authController.protectRoute,
+  postsController.updateMyPost
+);
+
+router.patch(
+  '/:id',
   postsController.uploadPostImgs,
   postsController.resizePostImg,
+  authController.protectRoute,
   postsController.updatePost
 );
 

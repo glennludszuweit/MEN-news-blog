@@ -8627,7 +8627,7 @@ exports.comment = comment;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.newPost = void 0;
+exports.updatePost = exports.newPost = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8686,6 +8686,55 @@ var newPost = /*#__PURE__*/function () {
 }();
 
 exports.newPost = newPost;
+
+var updatePost = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(data) {
+    var id, res;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            id = document.getElementById('updatePostId').value;
+            _context2.next = 4;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: "http://localhost:4000/api/v1/posts/".concat(id),
+              data: data
+            });
+
+          case 4:
+            res = _context2.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alert.showAlert)('success', 'Post updated successfully!');
+              window.setTimeout(function () {
+                location.assign('/my-posts');
+              }, 1500);
+            }
+
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            (0, _alert.showAlert)('danger', _context2.t0.response.data.message);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 8]]);
+  }));
+
+  return function updatePost(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.updatePost = updatePost;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -8963,6 +9012,7 @@ var loginForm = document.querySelector('.form-signin');
 var updateUserDataForm = document.querySelector('.update-user-data');
 var updateUserPasswordForm = document.querySelector('.update-user-password');
 var createNewPostForm = document.querySelector('.create-new-post');
+var updatePostForm = document.querySelector('.update-post');
 var commentForm = document.querySelector('.comment-form'); //DELEGATION
 
 if (registerForm) {
@@ -9072,6 +9122,24 @@ if (createNewPostForm) {
   });
 }
 
+if (updatePostForm) {
+  updatePostForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var form = new FormData();
+    form.append('coverImage', document.getElementById('updatePostCoverImage').files[0]);
+    form.append('contentImage1', document.getElementById('updatePostContentImages1').files[0]);
+    form.append('contentImage2', document.getElementById('updatePostContentImages2').files[0]);
+    form.append('title', document.getElementById('updatePostTitle').value);
+    form.append('author', document.getElementById('updatePostAuthor').value);
+    form.append('category', document.getElementById('updatePostCategory').value);
+    form.append('description', document.getElementById('updatePostDescription').value);
+    form.append('introduction', document.getElementById('updatePostIntroduction').value);
+    form.append('content', document.getElementById('updatePostContent').value);
+    console.log(form);
+    (0, _post.updatePost)(form);
+  });
+}
+
 if (commentForm) {
   commentForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -9109,7 +9177,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34123" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45821" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
