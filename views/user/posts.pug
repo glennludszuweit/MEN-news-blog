@@ -32,7 +32,29 @@ block content
                     .col-md-9.order-md-2
                         h3 My Posts
                         hr
-
                         each post in posts
+                            .row 
+                                .col-md-1
+                                    .excerpt
+                                        - if (post.category === 'Politics')
+                                            span.post-category.text-white.bg-secondary(style="text-indent: -9999px;")
+                                                small= post.category
+                                        - if (post.category === 'Travel')
+                                            span.post-category.text-white.bg-danger(style="text-indent: -9999px;")
+                                                small= post.category
+                                        - if (post.category === 'Sport')
+                                            span.post-category.text-white.bg-primary(style="text-indent: -9999px;")
+                                                small= post.category
+                                        - if (post.category === 'Entertainment')
+                                            span.post-category.text-white.bg-warning(style="text-indent: -9999px;")
+                                                small= post.category
+                                        - if (post.category === 'Technology')
+                                            span.post-category.text-white.bg-success(style="text-indent: -9999px;")
+                                                small= post.category
+                                .col-md-9
+                                    a(href=`/posts/${post.slug}`)
+                                        h5= post.title
 
-                            p= post.title
+                                .col-md-2.d-flex.justify-content-end
+                                    a#editPost(href="#") Delete
+                            hr
