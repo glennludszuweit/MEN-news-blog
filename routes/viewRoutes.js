@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/account', authController.protectRoute, viewsController.account);
 router.get('/new-post', authController.protectRoute, viewsController.newPost);
 router.get(
-  '/edit-post/:id',
+  '/edit-post/:slug',
   authController.protectRoute,
   viewsController.editPost
 );
