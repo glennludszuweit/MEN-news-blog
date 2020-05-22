@@ -9,6 +9,7 @@ const router = express.Router();
 //USERS
 router.get('/account', authController.protectRoute, viewsController.account);
 router.get('/new-post', authController.protectRoute, viewsController.newPost);
+router.get('/edit-post', authController.protectRoute, viewsController.editPost);
 router.get('/my-posts', authController.protectRoute, viewsController.userPosts);
 router.get(
   '/my-comments',
