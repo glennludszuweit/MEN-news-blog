@@ -11,8 +11,10 @@ block content
                         ul.list-group.list-group-flush.pb-3
                             li.list-group-item.bg-light
                                 a.text-secondary(href="/account") Settings
-                            //- li.list-group-item.bg-light.active
-                            //-     a.text-dark(href="/my-posts") Posts
+                            li.list-group-item.bg-light.active
+                                    a.text-dark(href="/new-post") New Post
+                            li.list-group-item.bg-light
+                                a.text-secondary(href="/my-posts") My Posts
                             li.list-group-item.bg-light
                                 a.text-secondary(href="/my-comments") My Comments
 
@@ -31,7 +33,7 @@ block content
                         .row
                             .col-md-1
                             .col-md-10
-                                h1.px-5.pb-3.pt-2 Create new Post
+                                h3.px-5.pb-3.pt-2 Create new Post
                             .col-md-1
 
                         .row

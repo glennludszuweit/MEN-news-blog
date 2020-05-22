@@ -14,6 +14,7 @@ router.post(
   postsController.uploadPostImgs,
   postsController.resizePostImg,
   authController.protectRoute,
+  postsController.setPostUserId,
   postsController.createPost
 );
 

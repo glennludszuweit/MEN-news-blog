@@ -132,9 +132,11 @@ module.exports = {
   }),
 
   userPosts: CatchAsync(async (req, res) => {
+    const posts = await Post.find({ user: req.user._id });
     //render template
     res.status(200).render('user/posts', {
       title: 'Your Posts',
+      posts,
     });
   }),
 

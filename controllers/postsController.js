@@ -79,6 +79,11 @@ module.exports = {
     next();
   }),
 
+  setPostUserId: (req, res, next) => {
+    if (!req.body.user) req.body.user = req.user.id;
+    next();
+  },
+
   //Create
   createPost: factory.createOne(Post),
   //Read

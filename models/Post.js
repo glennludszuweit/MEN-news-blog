@@ -26,6 +26,11 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Who is the author?'],
     },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'Post must belong to a User.'],
+    },
     slug: String,
     category: {
       type: String,
@@ -60,6 +65,18 @@ postSchema.virtual('comments', {
   ref: 'Comment',
   foreignField: 'post',
   localField: '_id',
+});
+
+postSchema.pre(/^find/, function (next) {
+  //   this.populate({
+  //     path: 'post',
+  //     select: 'title',
+  //   });
+  this.populate({
+    path: 'user',
+    select: 'name profileImg',
+  });
+  next();
 });
 
 //Slugify
