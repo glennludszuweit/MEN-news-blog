@@ -57,5 +57,7 @@ block content
 
                                 .col-md-2.d-flex.justify-content-end
                                     a.btn.btn-sm.btn-warning.rounded.mb-2.mr-2#editPost(href=`/edit-post/${post.slug}`) Edit
-                                    a.btn.btn-sm.btn-danger.rounded.mb-2#editPost(href="#") Delete
+                                    form.delete-post(method='POST' action=`/api/v1/posts/delete/${post.id}?_method=DELETE`)
+                                        input.btn.btn-sm.btn-danger.rounded.mb-2#deletePost(href="#" type="submit" value="Delete" onclick='return confirm("Are you sure you want to delete this Post? (Cannot be undone);")')
+                                    
                             hr

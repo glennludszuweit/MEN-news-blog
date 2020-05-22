@@ -20,11 +20,11 @@ router.post(
 
 router.get('/:id', postsController.getPost);
 
-router.patch(
-  '/updateMyPost',
-  authController.protectRoute,
-  postsController.updateMyPost
-);
+// router.patch(
+//   '/updateMyPost',
+//   authController.protectRoute,
+//   postsController.updateMyPost
+// );
 
 router.patch(
   '/:id',
@@ -34,6 +34,10 @@ router.patch(
   postsController.updatePost
 );
 
-router.delete('/:id', authController.protectRoute, postsController.deletePost);
+router.post(
+  '/delete/:id',
+  authController.protectRoute,
+  postsController.deletePost
+);
 
 module.exports = router;
