@@ -47,5 +47,6 @@ block content
                                 .col-md-5 
                                     a.text-black= user.email
                                 .col-md-1.d-flex.justify-content-end
-                                    a#deleteUser(href="#") Delete
+                                    form.delete-post(method='POST' action=`/api/v1/users/delete/${user.id}?_method=DELETE`)
+                                        input.btn.btn-sm.btn-danger.rounded.mb-2#deletePost(href="#" type="submit" value="Delete" onclick='return confirm("Are you sure you want to delete this User? (Cannot be undone)")')
                             hr

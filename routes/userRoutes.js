@@ -58,8 +58,8 @@ router.patch(
   // authController.restrictRouteTo('admin'),
   usersController.updateUser
 );
-router.delete(
-  '/:id',
+router.post(
+  '/delete/:id',
   authController.protectRoute,
   authController.restrictRouteTo('admin'),
   usersController.deleteUser
