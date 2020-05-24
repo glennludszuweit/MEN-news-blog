@@ -78,6 +78,7 @@ module.exports = {
       if (!doc) {
         return next(new AppError('Document not found.', 404));
       }
+      res.redirect('back');
       res.status(204).json({
         status: 'success',
         data: null,
