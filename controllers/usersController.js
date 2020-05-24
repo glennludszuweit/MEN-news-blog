@@ -101,5 +101,20 @@ module.exports = {
   //Update
   updateUser: factory.updateOne(User),
   //Delete
-  deleteUser: factory.deleteOne(User),
+  deleteUser: CatchAsync(async (req, res, next) => {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return next(new AppError('Document not found.', 404));
+    }
+    if (req.user.role === 'admin') {
+      res.redirect('back');
+    }
+    if (req.user.role === 'user') {
+      res.redirect('/');
+    }
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  }),
 };

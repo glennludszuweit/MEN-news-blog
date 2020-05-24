@@ -93,3 +93,13 @@ block content
                                     .d-flex.justify-content-end.mt-3
                                         input#update.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")
                             .col-md-2
+
+                        hr
+
+                        .row.my-5
+                            .col-md-3
+                            .col-md-6
+                                form.delete-post(method='POST' action=`/api/v1/users/delete/${user.id}?_method=DELETE`)
+                                        input.btn.btn-sm.btn-danger.rounded.mb-2.w-100#deletePost(href="#" type="submit" value="Delete Account" onclick='return confirm("Are you sure you want to delete your account? (Cannot be undone)")')
+                                        small This action cannot be undone.
+                            .col-md-3

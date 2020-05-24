@@ -61,7 +61,6 @@ router.patch(
 router.post(
   '/delete/:id',
   authController.protectRoute,
-  authController.restrictRouteTo('admin'),
   usersController.deleteUser
 );
 
