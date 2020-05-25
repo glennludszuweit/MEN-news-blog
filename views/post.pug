@@ -28,17 +28,19 @@ block content
                 .col-md-6.mb-4
                   img#post-images.img-fluid.rounded(src=`/images/posts/${post.contentImage2}` alt="Image placeholder")
           p= post.content
+          
+        //- .pt-5
+        //-   p
+        //-     | Categories: 
+        //-     a(href="#") Food
+        //-     | , 
+        //-     a(href="#") Travel
+        //-     |  Tags:
+        //-     a(href="#") #manila
+        //-     | , 
+        //-     a(href="#") #asia
         .pt-5
-          p
-            | Categories: 
-            a(href="#") Food
-            | , 
-            a(href="#") Travel
-            |  Tags:
-            a(href="#") #manila
-            | , 
-            a(href="#") #asia
-        .pt-5
+          hr
           h3.mb-5 Comments
           ul.comment-list
             each comment in post.comments
@@ -49,7 +51,15 @@ block content
                   else if !comment.user.profileImg
                     img(src=`/images/users/default.png` alt=`${comment.user.name}`)
                 .comment-body
-                  h3=comment.user.name
+                  .row
+                    .col-md-10
+                      h3=comment.user.name
+                    - if (comment.user.id == user.id)
+                      .col-md-2.d-flex.justify-content-end
+                        a.btn.btn-sm.btn-link.rounded#editComment(href=`/edit-comment/${comment.id}`) Edit
+                        form.delete-post(method='POST' action=`/api/v1/comments/delete/${comment.id}?_method=DELETE`)
+                            input.btn.btn-sm.btn-link.rounded#deleteComment(href="#" type="submit" value="Delete" onclick='return confirm("Are you sure you want to delete this Comment? (Cannot be undone)")')
+
                   .meta= comment.createdAt.toDateString()
                   p= comment.comment
 

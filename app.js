@@ -18,6 +18,12 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 
 //Middlwares
+// app.use(function (req, res, next) {
+//   res.locals.login = req.isAuthenticated();
+//   app.locals.userinfo = req.user;
+//   next();
+// });
+
 //Set view engine
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
