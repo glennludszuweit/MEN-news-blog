@@ -78,35 +78,45 @@ block content
         .container
             .row.mb-5
                 .col-12
-                    h2 More Posts
+                    h2 Latest by Category
             .row.align-items-stretch.retro-layout
-                
-                .col-md-5.order-md-2
-                    a.hentry.img-1.h-100.gradient(href="single.html" style="background-image: url('images/img_4.jpg');")
-                        span.post-category.text-white.bg-danger Travel
-                        .text
-                            h2 The 20 Biggest Fintech Companies In America 2019
-                            span February 12, 2019
+                each travel in travels.slice(0, 1)
+                    .col-md-5.order-md-2
+                        a.hentry.img-1.h-100.gradient(href="single.html" style=`background-image: url('/images/posts/${travel.coverImage}')`)
+                            span.post-category.text-white.bg-danger Travel
+                            .text
+                                h2= travel.title
+                                span= travel.createdAt.toLocaleString('de-de', {day: 'numeric', month: 'long', year: 'numeric'})
+
                 .col-md-7
                     .two-col.d-block.d-md-flex.mb-4
-                        a.hentry.v-height.img-2.gradient(href="single.html" style="background-image: url('images/img_2.jpg');")
-                            span.post-category.text-white.bg-primary Sports
-                            .text.text-sm
-                                h2 The 20 Biggest Fintech Companies In America 2019
-                                span February 12, 2019
-                        a.hentry.v-height.img-2.ml-auto.gradient(href="single.html" style="background-image: url('images/img_3.jpg');")
-                            span.post-category.text-white.bg-secondary Politics
-                            .text.text-sm
-                                h2 The 20 Biggest Fintech Companies In America 2019
-                                span February 12, 2019
+
+                        each sport in sports.slice(0, 1)
+                            a.hentry.v-height.img-2.gradient(href="single.html" style=`background-image: url('/images/posts/${sport.coverImage}')`)
+                                span.post-category.text-white.bg-primary Sports
+                                .text.text-sm
+                                    h2= sport.title
+                                    span= sport.createdAt.toLocaleString('de-de', {day: 'numeric', month: 'long', year: 'numeric'})
+
+                        each politic in politics.slice(0, 1)
+                            a.hentry.v-height.img-2.gradient(href="single.html" style=`background-image: url('/images/posts/${politic.coverImage}')`)
+                                span.post-category.text-white.bg-secondary Politics
+                                .text.text-sm
+                                    h2= politic.title
+                                    span= politic.createdAt.toLocaleString('de-de', {day: 'numeric', month: 'long', year: 'numeric'})
+
                     .two-col.d-block.d-md-flex
-                        a.hentry.v-height.img-2.gradient(href="single.html" style="background-image: url('images/img_2.jpg');")
-                            span.post-category.text-white.bg-success Technology
-                            .text.text-sm
-                                h2 The 20 Biggest Fintech Companies In America 2019
-                                span February 12, 2019
-                        a.hentry.v-height.img-2.ml-auto.gradient(href="single.html" style="background-image: url('images/img_3.jpg');")
-                            span.post-category.text-white.bg-warning Entertainment
-                            .text.text-sm
-                                h2 The 20 Biggest Fintech Companies In America 2019
-                                span February 12, 2019
+
+                        each tech in techs.slice(0, 1)
+                            a.hentry.v-height.img-2.gradient(href="single.html" style=`background-image: url('/images/posts/${tech.coverImage}')`)
+                                span.post-category.text-white.bg-success Technology
+                                .text.text-sm
+                                    h2= tech.title
+                                    span= tech.createdAt.toLocaleString('de-de', {day: 'numeric', month: 'long', year: 'numeric'})
+
+                        each entertainment in entertainments.slice(0, 1)
+                            a.hentry.v-height.img-2.gradient(href="single.html" style=`background-image: url('/images/posts/${entertainment.coverImage}')`)
+                                span.post-category.text-white.bg-warning Entertainment
+                                .text.text-sm
+                                    h2= entertainment.title
+                                    span= entertainment.createdAt.toLocaleString('de-de', {day: 'numeric', month: 'long', year: 'numeric'})

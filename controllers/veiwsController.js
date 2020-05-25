@@ -9,11 +9,21 @@ module.exports = {
   indexPage: CatchAsync(async (req, res, next) => {
     //get DATA from collection
     const posts = await Post.find().limit(9).sort({ createdAt: -1 });
+    const politics = await Post.find({ category: 'Politics' });
+    const travels = await Post.find({ category: 'Travel' });
+    const techs = await Post.find({ category: 'Technology' });
+    const sports = await Post.find({ category: 'Sport' });
+    const entertainments = await Post.find({ category: 'Entertainment' });
     //add template
     //render template
     res.status(200).render('index', {
       title: 'News Blog',
       posts,
+      politics,
+      travels,
+      techs,
+      sports,
+      entertainments,
     });
   }),
 
