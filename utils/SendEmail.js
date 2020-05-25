@@ -2,8 +2,6 @@ const nodemailer = require('nodemailer');
 const pug = require('pug');
 const HTMLToText = require('html-to-text');
 
-// new Email(user, url).sendWelcome();
-
 module.exports = class Email {
   constructor(user, url) {
     this.from = `NewsBlog <${process.env.EMAIL_FROM}>`;
