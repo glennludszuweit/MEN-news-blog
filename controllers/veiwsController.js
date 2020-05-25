@@ -151,7 +151,10 @@ module.exports = {
   }),
 
   userComments: CatchAsync(async (req, res) => {
-    const comments = await Comment.find({ user: req.user._id });
+    const comments = await Comment.find({ user: req.user._id }).populate({
+      path: 'post',
+      fields: 'title',
+    });
     //render template
     res.status(200).render('user/comments', {
       title: 'Your Comments',

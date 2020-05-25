@@ -31,8 +31,18 @@ block content
 
                     .col-md-9.order-md-2
                         h3 My Comments
+                        
+                        .row.pt-3
+                            .col-md-7
+                                h5 Comments
+                            .col-md-5
+                                h5 Post
                         hr
+                                    
                         each comment in comments
                             .row
-                                .col-md-5
+                                .col-md-7
                                     p= comment.comment
+
+                                .col-md-5
+                                    a(href=`/posts/${comment.post.slug}`)= comment.post.title

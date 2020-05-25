@@ -37,7 +37,8 @@ const postSchema = new mongoose.Schema(
       required: [true, 'Please select category.'],
       enum: {
         values: ['Politics', 'Technology', 'Entertainment', 'Travel', 'Sport'],
-        message: 'Category not found.',
+        message:
+          'Category must be one of: Sport, Travel, Politics, Entertainment or Technology.',
       },
     },
     coverImage: {
