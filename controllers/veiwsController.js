@@ -150,6 +150,15 @@ module.exports = {
     });
   }),
 
+  editComment: CatchAsync(async (req, res) => {
+    const comment = await Comment.findOne({ _id: req.params.id });
+    //render template
+    res.status(200).render('user/editComment', {
+      title: 'Edit Comment',
+      comment,
+    });
+  }),
+
   userComments: CatchAsync(async (req, res) => {
     const comments = await Comment.find({ user: req.user._id });
     //render template

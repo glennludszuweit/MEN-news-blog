@@ -4,6 +4,7 @@ import { login } from './auth';
 import { register } from './auth';
 import { updateSettings } from './updateSettings';
 import { comment } from './comments';
+import { updateComment } from './comments';
 import { newPost } from './post';
 import { updatePost } from './post';
 
@@ -15,6 +16,7 @@ const updateUserPasswordForm = document.querySelector('.update-user-password');
 const createNewPostForm = document.querySelector('.create-new-post');
 const updatePostForm = document.querySelector('.update-post');
 const commentForm = document.querySelector('.comment-form');
+const updateCommentForm = document.querySelector('.update-comment');
 
 //DELEGATION
 if (registerForm) {
@@ -145,5 +147,14 @@ if (commentForm) {
     const commentPostId = document.getElementById('commentPostId').value;
     const commentMessage = document.getElementById('comment-message').value;
     comment(commentUserId, commentPostId, commentMessage);
+  });
+}
+
+if (updateCommentForm) {
+  updateCommentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const updateCommentField = document.getElementById('updateCommentField')
+      .value;
+    updateComment(updateCommentField);
   });
 }

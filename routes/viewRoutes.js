@@ -20,6 +20,11 @@ router.get(
   authController.protectRoute,
   viewsController.userComments
 );
+router.get(
+  '/edit-comment/:id',
+  authController.protectRoute,
+  viewsController.editComment
+);
 
 //ADMIN
 router.get(

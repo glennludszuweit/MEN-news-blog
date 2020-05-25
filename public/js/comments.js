@@ -23,3 +23,22 @@ export const comment = async (user, post, comment) => {
     showAlert('danger', error.response.data.message);
   }
 };
+
+export const updateComment = async (comment) => {
+  try {
+    let id = document.getElementById('updateCommentId').value;
+    const res = await axios({
+      method: 'PATCH',
+      url: `http://localhost:4000/api/v1/comments/${id}`,
+      data: { comment },
+    });
+    if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        location.assign('/my-comments');
+      }, 2000);
+      showAlert('success', 'Comment Updated!');
+    }
+  } catch (error) {
+    showAlert('danger', error.response.data.message);
+  }
+};

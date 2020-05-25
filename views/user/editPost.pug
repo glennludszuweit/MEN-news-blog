@@ -40,7 +40,7 @@ block content
                             .col-md-1
                             .col-md-10
                                 form.update-post.px-5.pb-3
-                                    input#updatePostId(type="text" value=`${post.id}` style="display: none")
+                                    input#updatePostId(type="hidden" value=`${post.id}`)
                                     if post.coverImage
                                         img.img-fluid.rounded.my-1.w-100(src=`/images/posts/${post.coverImage}` alt=`Photo of ${post.title}`)
                                     else
@@ -102,7 +102,7 @@ block content
                                     textarea#updatePostContent.form-control.rounded(type="text" rows="15")= post.content
 
                                     .d-flex.justify-content-end.mt-3
-                                        input.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Create")
+                                        input.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")
                             .col-md-1
 
                         

@@ -25,29 +25,27 @@ block content
                                     a.text-secondary(href="/all-users") All Users
                                 li.list-group-item.bg-light
                                     a.text-secondary(href="/all-posts") All Posts
-                                li.list-group-item.bg-light.active
-                                    a.text-dark(href="/all-comments") All Comments
+                                li.list-group-item.bg-light
+                                    a.text-secondary(href="/all-comments") All Comments
                                 hr.pb-3
 
                     .col-md-9.order-md-2
-                        h3 All Comments
-
-                        .row.pt-3
-                            .col-md-6
-                                h5 Comments
-                            .col-md-5
-                                h5 Post
+                        .row
                             .col-md-1
-                        hr
+                            .col-md-10
+                                h3.px-5.pb-3.pt-2 Edit Comment
+                            .col-md-1
 
-                        each comment in comments
-                            .row
-                                .col-md-6
-                                    p= `${comment.comment.slice(0, 50)} ...`
+                        .row
+                            .col-md-1
+                            .col-md-10
+                                form.update-comment.px-5.pb-3
+                                    h5= comment.post.title
+                                    input#updateCommentId(type="hidden" value=`${comment.id}`)
+                                    textarea#updateCommentField.form-control.rounded(type="text" rows="10")= comment.comment
+                    
+                                    .d-flex.justify-content-end.mt-3
+                                        input.btn.btn-primary.py-2.px-4.rounded(type="submit" value="Update")
+                            .col-md-1
 
-                                .col-md-5
-                                    a(href=`/posts/${comment.post.slug}`)= comment.post.title
-
-                                .col-md-1
-                                    form.delete-post(method='POST' action=`/api/v1/comments/delete/${comment.id}?_method=DELETE`)
-                                        input.btn.btn-sm.btn-danger.rounded.mb-2#deleteComment(href="#" type="submit" value="Delete" onclick='return confirm("Are you sure you want to delete this Comment? (Cannot be undone)")')
+                        
