@@ -151,10 +151,7 @@ module.exports = {
   }),
 
   userComments: CatchAsync(async (req, res) => {
-    const comments = await Comment.find({ user: req.user._id }).populate({
-      path: 'post',
-      fields: 'title',
-    });
+    const comments = await Comment.find({ user: req.user._id });
     //render template
     res.status(200).render('user/comments', {
       title: 'Your Comments',
@@ -172,9 +169,11 @@ module.exports = {
   }),
 
   allComments: CatchAsync(async (req, res) => {
+    const comments = await Comment.find();
     //render template
     res.status(200).render('admin/comments', {
       title: 'All Comments',
+      comments,
     });
   }),
 

@@ -31,4 +31,22 @@ block content
 
                     .col-md-9.order-md-2
                         h3 All Comments
+
+                        .row.pt-3
+                            .col-md-6
+                                h5 Comments
+                            .col-md-5
+                                h5 Post
+                            .col-md-1
                         hr
+
+                        each comment in comments
+                            .row
+                                .col-md-6
+                                    p= `${comment.comment.slice(0, 50)} ...`
+
+                                .col-md-5
+                                    a(href=`/posts/${comment.post.slug}`)= comment.post.title
+
+                                .col-md-1
+                                    

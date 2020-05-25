@@ -42,7 +42,7 @@ block content
                         each comment in comments
                             .row
                                 .col-md-7
-                                    p= comment.comment
+                                    p= `${comment.comment.slice(0, 50)} ...`
 
                                 .col-md-5
                                     a(href=`/posts/${comment.post.slug}`)= comment.post.title
