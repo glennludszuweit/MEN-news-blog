@@ -49,4 +49,5 @@ block content
                                     a(href=`/posts/${comment.post.slug}`)= comment.post.title
 
                                 .col-md-1
-                                    
+                                    form.delete-post(method='POST' action=`/api/v1/comments/delete/${comment.id}?_method=DELETE`)
+                                        input.btn.btn-sm.btn-danger.rounded.mb-2#deletePost(href="#" type="submit" value="Delete" onclick='return confirm("Are you sure you want to delete this Comment? (Cannot be undone)")')

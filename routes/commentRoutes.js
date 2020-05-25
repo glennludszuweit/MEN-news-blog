@@ -21,8 +21,8 @@ router.patch(
   commentsController.updateComment
 );
 
-router.delete(
-  '/:id',
+router.post(
+  '/delete/:id',
   authController.protectRoute,
   commentsController.deleteComment
 );

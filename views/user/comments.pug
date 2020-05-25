@@ -33,16 +33,21 @@ block content
                         h3 My Comments
                         
                         .row.pt-3
-                            .col-md-7
+                            .col-md-6
                                 h5 Comments
                             .col-md-5
                                 h5 Post
+                            .col-md-1
                         hr
                                     
                         each comment in comments
                             .row
-                                .col-md-7
+                                .col-md-6
                                     p= `${comment.comment.slice(0, 50)} ...`
 
                                 .col-md-5
                                     a(href=`/posts/${comment.post.slug}`)= comment.post.title
+
+                                .col-md-1
+                                    form.delete-post(method='POST' action=`/api/v1/comments/delete/${comment.id}?_method=DELETE`)
+                                        input.btn.btn-sm.btn-danger.rounded.mb-2#deletePost(href="#" type="submit" value="Delete" onclick='return confirm("Are you sure you want to delete this Comment? (Cannot be undone)")')
