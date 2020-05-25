@@ -1,0 +1,20 @@
+extends base_email
+
+block content
+
+    p Hi #{firstName},
+        p Welcome to NewsBlog 
+        p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, eius nobis. Quam hic, ea tempore, aspernatur non quae ipsam earum aliquam, debitis repudiandae laborum magnam fugiat? Nam asperiores veritatis reiciendis.
+        p Start by uploading your profile photo!
+        table.btn.btn-primary(role="presentation" border="0" cellpadding="0" cellspacing="0")
+            tbody
+                tr
+                    td(align="left")
+                        table(role="presentation" border="0" cellpadding="0" cellspacing="0")
+                            tbody
+                                tr
+                                    td
+                                        a(href=`${url}` target="_blank") Upload Profile Photo
+        p If you have any questions, please contact us throught the blog.
+        p Good luck! Enjoy.
+        p - Glenn Ludszuweit

@@ -6,7 +6,7 @@ module.exports = class Email {
   constructor(user, url) {
     this.from = `NewsBlog <${process.env.EMAIL_FROM}>`;
     this.to = user.email;
-    this.firsName = user.name.split(' ')[0];
+    this.firstName = user.name.split(' ')[0];
     this.url = url;
   }
 
@@ -36,7 +36,7 @@ module.exports = class Email {
     const html = pug.renderFile(
       `${__dirname}/../views/emails/${template}.pug`,
       {
-        firsName: this.firsName,
+        firstName: this.firstName,
         url: this.url,
         subject,
       }
@@ -52,7 +52,7 @@ module.exports = class Email {
     };
 
     //create transporter and send the email
-    await this.newMailTransport().transporter.sendMail(mailOptions);
+    await this.newMailTransport().sendMail(mailOptions);
   }
 
   async sendWelcome() {

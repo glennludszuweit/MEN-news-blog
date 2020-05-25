@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
-const SendEmail = require('../utils/SendEmail');
+const Email = require('../utils/Email');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -45,6 +45,10 @@ module.exports = {
       password: req.body.password,
       confirmPassword: req.body.confirmPassword,
     });
+
+    const url = `${req.protocol}://${req.get('host')}/account`;
+    console.log(url);
+    await new Email(newUser, url).sendWelcome();
 
     createSendToken(newUser, 201, res);
   }),
@@ -161,11 +165,12 @@ module.exports = {
     )}/api/v1/users/resetPassword/${resetToken}`;
     const message = `Submit new password and confirm to: ${resetURL}`;
     try {
-      await SendEmail({
-        email: user.email,
-        subject: 'NEWSBLOG - New Password (valid for 30mins).',
-        message,
-      });
+      // await Email({
+      //   email: user.email,
+      //   subject: 'NEWSBLOG - New Password (valid for 30mins).',
+      //   message,
+      // });
+
       res.status(200).json({
         status: 'success',
         message: 'Token sent to email!',
