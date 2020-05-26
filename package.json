@@ -4,6 +4,7 @@
   "description": "News Blog",
   "main": "app.js",
   "scripts": {
+    "start": "node server.js",
     "start:dev": "NODE_ENV=development nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "devdata:import": "node dev-data/data/dev-data.js --import",
@@ -59,5 +60,8 @@
     "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=12.0.0"
   }
 }

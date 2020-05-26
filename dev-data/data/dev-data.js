@@ -1,19 +1,22 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 // const dotenv = require('dotenv');
-const Post = require('../../models/Post');
 const User = require('../../models/User');
-const Comment = require('../../models/Comment');
+// const Post = require('../../models/Post');
+// const Comment = require('../../models/Comment');
 
 // dotenv.config({ path: '../../.env' });
 
 mongoose
-  .connect('mongodb://localhost:27017/newsblog', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    'mongodb+srv://newsblog:admin123@news-blog-obtqi.mongodb.net/newsblog?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log('Mongo connection established'));
 
 // READ JSON FILE
