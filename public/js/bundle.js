@@ -8393,7 +8393,7 @@ var register = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:4000/api/v1/users/signup',
+              url: '/api/v1/users/signup',
               data: {
                 name: signupName,
                 email: signupEmail,
@@ -8447,7 +8447,7 @@ var login = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:4000/api/v1/users/login',
+              url: '/api/v1/users/login',
               data: {
                 email: signinEmail,
                 password: signinPassword
@@ -8513,7 +8513,7 @@ var updateSettings = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            url = type === 'password' ? 'http://localhost:4000/api/v1/users/updateMyPassword' : 'http://localhost:4000/api/v1/users/updateProfile';
+            url = type === 'password' ? '/api/v1/users/updateMyPassword' : '/api/v1/users/updateProfile';
             _context.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
@@ -8581,7 +8581,7 @@ var comment = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:4000/api/v1/comments',
+              url: '/api/v1/comments',
               data: {
                 user: user,
                 post: post,
@@ -8634,7 +8634,7 @@ var updateComment = /*#__PURE__*/function () {
             _context2.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: "http://localhost:4000/api/v1/comments/".concat(id),
+              url: "/api/v1/comments/".concat(id),
               data: {
                 comment: comment
               }
@@ -8701,7 +8701,7 @@ var newPost = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:4000/api/v1/posts',
+              url: '/api/v1/posts',
               data: data
             });
 
@@ -8750,7 +8750,7 @@ var updatePost = /*#__PURE__*/function () {
             _context2.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: "http://localhost:4000/api/v1/posts/".concat(id),
+              url: "/api/v1/posts/".concat(id),
               data: data
             });
 
@@ -9237,7 +9237,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39741" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38485" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -6,7 +6,7 @@ export const comment = async (user, post, comment) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:4000/api/v1/comments',
+      url: '/api/v1/comments',
       data: {
         user,
         post,
@@ -29,7 +29,7 @@ export const updateComment = async (comment) => {
     let id = document.getElementById('updateCommentId').value;
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:4000/api/v1/comments/${id}`,
+      url: `/api/v1/comments/${id}`,
       data: { comment },
     });
     if (res.data.status === 'success') {

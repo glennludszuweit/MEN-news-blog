@@ -7,6 +7,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const errorController = require('./controllers/errorController');
 
@@ -16,13 +17,6 @@ const postRouter = require('./routes/postRoutes');
 const userRouter = require('./routes/userRoutes');
 
 const app = express();
-
-//Middlwares
-// app.use(function (req, res, next) {
-//   res.locals.login = req.isAuthenticated();
-//   app.locals.userinfo = req.user;
-//   next();
-// });
 
 //Set view engine
 app.set('view engine', 'pug');
@@ -62,10 +56,13 @@ app.use(
 app.use(express.json({}));
 app.use(cookieParser());
 
+//compression
+app.use(compression());
+
 //Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   // console.log(req.headers);
   next();
 });

@@ -11,7 +11,7 @@ export const register = async (
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:4000/api/v1/users/signup',
+      url: '/api/v1/users/signup',
       data: {
         name: signupName,
         email: signupEmail,
@@ -35,7 +35,7 @@ export const login = async (signinEmail, signinPassword) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:4000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email: signinEmail,
         password: signinPassword,

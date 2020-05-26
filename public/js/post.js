@@ -6,7 +6,7 @@ export const newPost = async (data) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:4000/api/v1/posts',
+      url: '/api/v1/posts',
       data,
     });
     if (res.data.status === 'success') {
@@ -25,7 +25,7 @@ export const updatePost = async (data) => {
     let id = document.getElementById('updatePostId').value;
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:4000/api/v1/posts/${id}`,
+      url: `/api/v1/posts/${id}`,
       data,
     });
     if (res.data.status === 'success') {
