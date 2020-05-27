@@ -11,7 +11,7 @@ dotenv.config({ path: '.env' });
 const app = require('./app');
 
 mongoose
-  .connect(process.env.MONGODB, {
+  .connect(process.env.MONGODB || 'mongodb://localhost:27017/newsblog', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
