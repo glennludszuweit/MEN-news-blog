@@ -52,19 +52,19 @@ module.exports = {
       return next();
 
     //Cover image
-    req.body.coverImage = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+    req.body.coverImage = `post-${Date.now()}-cover.jpeg`;
     await sharp(req.files.coverImage[0].buffer)
       .toFormat('jpeg')
       .jpeg({ quality: 100 })
       .toFile(`public/images/posts/${req.body.coverImage}`);
 
-    req.body.contentImage1 = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+    req.body.contentImage1 = `post-${Date.now()}-image-1.jpeg`;
     await sharp(req.files.contentImage1[0].buffer)
       .toFormat('jpeg')
       .jpeg({ quality: 100 })
       .toFile(`public/images/posts/${req.body.contentImage1}`);
 
-    req.body.contentImage2 = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+    req.body.contentImage2 = `post-${Date.now()}-image-2.jpeg`;
     await sharp(req.files.contentImage2[0].buffer)
       .toFormat('jpeg')
       .jpeg({ quality: 100 })
