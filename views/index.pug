@@ -60,7 +60,7 @@ block content
                                         | By 
                                         span(style="padding-right: 3px; color: #000")= post.author 
                                     span= post.createdAt.toLocaleString('de-de', {day: 'numeric', month: 'long', year: 'numeric'})
-                                p= post.description
+                                p= `${post.description.slice(0, 200)} ...`
                                 p
                                     a(href=`/posts/${post.slug}`) Read More
     
