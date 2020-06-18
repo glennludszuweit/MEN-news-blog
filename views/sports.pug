@@ -8,12 +8,12 @@ block content
                 .col-md-6.text-white
                     span Category
                     h3.text-white Sports
-                    p
-                        | Category description here.. Lorem ipsum dolor sit amet,
-                        | consectetur adipisicing elit. Aliquam error eius quo, officiis
-                        | non maxime quos reiciendis perferendis doloremque maiores!
+                    form
+                        .form-group
+                            .input-group.mb-2
+                            input#search.form-control.rounded(type="text" name="search" placeholder="Search article here ...")
     .site-section.bg-white
-        .container
+        .container#postsIndex
             .row
                 each post in posts
                     .col-lg-4.mb-4
@@ -21,7 +21,7 @@ block content
                             a(href=`/posts/${post.slug}`)
                                 img#cardImg.img-fluid.rounded(src=`/images/posts/${post.coverImage}` alt=`${post.title}`)
                             .excerpt
-                                h2
+                                h2#post-category-title
                                     a(href=`/posts/${post.slug}`)= post.title
                                 .post-meta.align-items-center.text-left.clearfix.mb-3
                                     //- figure.author-figure.mb-0.mr-3.float-left

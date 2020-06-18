@@ -20,7 +20,7 @@
     <li>JWT</li>
 </ul>
 
-<p>The app is deployed using AWS EC2 instance and Route53 to point to my domain.</p>
+<p>The app is deployed using AWS EC2 instance and ElasticIP to point to my domain.</p>
 
-<p>Click <a href="http://newsblog.gnglab.de/">HERE</a></p>
-<p>Or copy this link and paste to your browser http://newsblog.gnglab.de/</p>
+<p>Click <a href="http://newsblog.glennludszuweit.de/">HERE</a></p>
+<p>Or copy this link and paste to your browser http://newsblog.glennludszuweit.de/</p>
